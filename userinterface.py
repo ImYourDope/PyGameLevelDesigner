@@ -1,7 +1,12 @@
-import pygame
 from settings import *
+from buttonclass import *
 
 ui_rect = (0, 0, left_margin, screen_height)
+
+
+def draw_ui_background(screen):
+    screen.fill(background_color)
+
 
 def draw_ui(screen):
     pygame.draw.rect(screen, ui_main_color, ui_rect)
