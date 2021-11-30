@@ -1,4 +1,4 @@
-from playerinput import *
+from userinput import *
 from settings import *
 
 canvas = pygame.Surface((canvas_width, canvas_height))
