@@ -1,12 +1,10 @@
-import pygame
 from settings import *
-from canvas import *
 
 
 class Button:
     def __init__(self, screen, text, pos, func, x_shift, y_shift):
         self.screen = screen
-        self.surface = main_font.render(text, False, font_color)
+        self.surface = main_font.render(text, False, main_font_color)
         self.pos = pos
         self.func = func
         self.shift_pos = (pos[0] + x_shift, pos[1] + y_shift)
