@@ -1,7 +1,7 @@
 from settings import *
 
 
-class InputLine:
+class Input:
     def __init__(self, screen, rect, vocabulary):
         self.screen = screen
         self.rect = pygame.Rect(rect)

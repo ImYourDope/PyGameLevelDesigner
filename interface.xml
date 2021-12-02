@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout
+    width="1400"
+    height="700">
+
+    <Button
+        x="10"
+        y="20"
+        text="OPEN TEST SCREEN">
+
+        <Hover
+            x="20"
+            y="20"/>
+    </Button>
+</Layout>

@@ -1,4 +1,4 @@
-from Interface.buttonclass import *
+from Interface.button import *
 from grid import grid_button
 from popupscreens import *
 
