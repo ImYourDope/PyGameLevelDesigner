@@ -17,16 +17,19 @@ class PopupScreen:
             b.draw()
 
     def start(self):
-        state['main_screen_on'] = False
-        state['popup_screen_on'] = True
-        state['active_buttons'] = self.buttons
-        state['active_inputlines'] = self.inputlines
-        state['popup_screen'] = self
+        event_manager.main_screen_on = False
+        event_manager.popup_screen_on = True
+        event_manager.active_buttons = self.buttons
+        event_manager.active_inputlines = self.inputlines
+        event_manager.popup_screen = self
+
+    def open(self):
+        print('opened')
 
 
 def popup_screen_close():
-        state['main_screen_on'] = True
-        state['popup_screen_on'] = False
-        state['active_buttons'] = main_screen_buttons
-        state['active_inputlines'] = main_screen_inputlines
-        state['popup_screen'] = None
+        event_manager.main_screen_on = True
+        event_manager.popup_screen_on = False
+        event_manager.active_buttons = main_screen_buttons
+        event_manager.active_inputlines = main_screen_inputlines
+        event_manager.popup_screen = None

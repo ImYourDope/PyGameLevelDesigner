@@ -4,42 +4,40 @@ class Singleton:
     def __new__(cls):
         if cls.instance is None:
             cls.instance = super(Singleton, cls).__new__(cls)
+            cls.instance.__dict__['data'] = {}
         return cls.instance
 
 
 class EventManager(Singleton):
     def __init_attr(self, key):
-        self.__dict__[key] = {}
-        self.__dict__[key]['callbacks'] = []
+        self.data[key] = {}
+        self.data[key]['callbacks'] = []
 
     def __getattr__(self, key):
-        return self.__dict__[key]['value']
+        if key not in self.data:
+            return None
+        return self.data[key]['value']
 
     def __setattr__(self, key, value):
-        if key not in self.__dict__:
+        if key not in self.data:
             self.__init_attr(key)
 
-        self.__dict__[key]['value'] = value
+        self.data[key]['value'] = value
 
-        for callback in self.__dict__[key]['callbacks']:
+        for callback in self.data[key]['callbacks']:
             callback(value)
 
     def onchange(self, key, callback):
-        if key not in self.__dict__:
+        if key not in self.data:
             self.__init_attr(key)
 
-        self.__dict__[key]['callbacks'].append(callback)
+        self.data[key]['callbacks'].append(callback)
+
+    def remove_callbacks(self, key):
+        self.data[key]['callbacks'] = []
 
 
-def onchange_i(new_value):
-    print('State var i changed. New value is:', new_value)
-
-
-state = EventManager()
-state.onchange('i', onchange_i)
-state.i = 10
-state.i = 20
-
+event_manager = EventManager()
 
 
 

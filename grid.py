@@ -6,7 +6,7 @@ grid.fill(grid_colorkey)
 
 
 def grid_button():
-    state['grid_on'] = not state['grid_on']
+    event_manager.grid_on = not event_manager.grid_on
 
 
 def draw_grid(screen):
