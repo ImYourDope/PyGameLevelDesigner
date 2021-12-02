@@ -7,6 +7,7 @@ from inputlines import *
 from popupscreens import *
 
 
+test_popup_screen = "hello"
 pygame.init()
 
 # CREATE SECTION
