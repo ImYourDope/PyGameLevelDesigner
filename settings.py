@@ -6,8 +6,11 @@ FPS = 60
 # STATES
 state = {
     'grid_on': True,
-    'main_screen': True,
-    'popup_screen': False
+    'main_screen_on': True,
+    'popup_screen_on': False,
+    'active_inputlines': None,
+    'active_buttons': None,
+    'popup_screen': None
 }
 
 # FONT SETTINGS
@@ -16,9 +19,6 @@ main_font_size = 30
 main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
 
-# BUTTON SETTINGS
-button_gap = -2
-starting_button_pos = 5
 
 # SPRITESHEET SETTING
 default_sprite_row_color = (255, 255, 0)
@@ -81,9 +81,16 @@ inputline_border_thickness = 2
 inputline_font = 'DisposableDroidBB_bld.ttf'
 inputline_font_size = main_font_size
 inputline_font_color = (0, 0, 0)
+main_screen_inputlines = []
+test_popup_screen_inputlines = []
+
+# BUTTONS SETTINGS
+main_screen_buttons = []
+test_popup_screen_buttons = []
+button_gap = -2
+starting_button_pos = 5
 
 # POPUPSCREEN SETTINGS
-popup_screen = None
 popup_screen_background_color = ui_main_color
 popup_screen_border_color = ui_border_color
 popup_screen_border_thickness = 2

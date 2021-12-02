@@ -51,19 +51,23 @@ def scroll_canvas(event):
 
 
 def draw_scrolling_cursor(screen):
-    if top_scrolling_rect.collidepoint(pygame.mouse.get_pos()):
+    if top_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
+            canvas_pos[1] < editing_screen_rect.top + void_margin:
         pygame.mouse.set_visible(False)
         screen.blit(top_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                        pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-    elif bottom_scrolling_rect.collidepoint(pygame.mouse.get_pos()):
+    elif bottom_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
+            canvas_pos[1] + canvas_height + void_margin > editing_screen_rect.bottom:
         pygame.mouse.set_visible(False)
         screen.blit(bottom_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                           pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-    elif left_scrolling_rect.collidepoint(pygame.mouse.get_pos()):
+    elif left_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
+            canvas_pos[0] < editing_screen_rect.left + void_margin:
         pygame.mouse.set_visible(False)
         screen.blit(left_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                         pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-    elif right_scrolling_rect.collidepoint(pygame.mouse.get_pos()):
+    elif right_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
+            canvas_pos[0] + canvas_width + void_margin > editing_screen_rect.right:
         pygame.mouse.set_visible(False)
         screen.blit(right_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                          pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))

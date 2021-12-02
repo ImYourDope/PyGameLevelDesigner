@@ -1,16 +1,17 @@
 from buttonclass import *
 from grid import grid_button
-# from popupscreens import open_test_popup_screen, close_popup_screen
-
-main_screen_buttons = []
-popup_screen_buttons = []
-active_buttons = main_screen_buttons
-test_popup_screen_buttons = []
+from popupscreens import *
 
 
-def create_buttons(screen):
-    #main_screen_buttons.append(
-        # Button(screen, 'CREATE PROJECT', (10, starting_button_pos), open_test_popup_screen, 15, 0))
+def create_popup_screen_buttons(screen):
+    test_popup_screen_buttons.append(Button(screen, 'CLOSE TEST SCREEN', (200, 200), popup_screen_close, 15, 0))
+
+
+def create_main_screen_buttons(screen):
+    global test_popup_screen
+    print(test_popup_screen)
+    main_screen_buttons.append(
+        Button(screen, 'OPEN TEST SCREEN', (10, starting_button_pos), test_popup_screen.open, 15, 0))
     main_screen_buttons.append(
         Button(screen, 'LOAD PROJECT', (10, (button_gap + main_font_size) + starting_button_pos), grid_button, 15, 0))
     main_screen_buttons.append(
@@ -22,14 +23,7 @@ def create_buttons(screen):
     main_screen_buttons.append(
         Button(screen, 'CREATE LEVEL', (10, (button_gap + main_font_size) * 4 + starting_button_pos), grid_button, 15,
                0))
-    # test_popup_screen_buttons.append(
-        #Button(screen, 'CLOSE POP UP SCREEN', (0, 0), close_popup_screen, 15, 0)
-   # )
+    state['active_buttons'] = main_screen_buttons
 
 
-def update_buttons():
-    global active_buttons
-    if state['main_screen']:
-        active_buttons = main_screen_buttons
-    elif state['popup_screen']:
-        active_buttons = popup_screen_buttons
+
