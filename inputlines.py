@@ -1,4 +1,4 @@
-from inputlineclass import *
+from Interface.inputlineclass import *
 
 from event_manager import event_manager
 

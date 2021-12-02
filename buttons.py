@@ -1,4 +1,4 @@
-from buttonclass import *
+from Interface.buttonclass import *
 from grid import grid_button
 from popupscreens import *
 
@@ -13,7 +13,7 @@ def create_main_screen_buttons(screen):
 
     print(event_manager.test_popup_screen)
     main_screen_buttons.append(
-        Button(screen, 'OPEN TEST SCREEN', (10, starting_button_pos), event_manager.test_popup_screen.open, 15, 0))
+        Button(screen, 'OPEN TEST SCREEN', (10, starting_button_pos), event_manager.test_popup_screen.start, 15, 0))
     main_screen_buttons.append(
         Button(screen, 'LOAD PROJECT', (10, (button_gap + main_font_size) + starting_button_pos), grid_button, 15, 0))
     main_screen_buttons.append(
