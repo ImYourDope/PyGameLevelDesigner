@@ -27,7 +27,7 @@ dom = xml.read_dom(screen)
 
 dom_event_manager.init_dom(dom)
 
-# dom_event_manager.onclick('grid-button', toggle_grid)
+dom_event_manager.onclick('open-test-screen-button', toggle_grid)
 
 # CREATE SECTION
 # create_popup_screen_buttons(screen)

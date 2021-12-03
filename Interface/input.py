@@ -5,22 +5,18 @@ from event_manager import dom_event_manager
 
 
 class Input(DOMElement):
+    DEFAULT = {
+        'x': 0,
+        'y': 0,
+        'width': 200,
+        'height': 30,
+        'text': '',
+        'type': 'text'
+    }
+
     def __init__(self, screen, properties):
         self.screen = screen
         self.id = properties['id']
-
-        if 'x' not in properties:
-            properties['x'] = 0
-        if 'y' not in properties:
-            properties['y'] = 0
-        if 'width' not in properties:
-            properties['width'] = 200
-        if 'height' not in properties:
-            properties['height'] = 30
-        if 'text' not in properties:
-            properties['text'] = ''
-        if 'type' not in properties:
-            properties['type'] = 'text'
 
         self.rect = pygame.Rect(properties['x'],
                                 properties['y'],

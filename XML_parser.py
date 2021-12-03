@@ -26,11 +26,10 @@ class XMLParser:
                 props = XMLParser.set_default_parameters(props, Button.DEFAULT)
                 dom.append(Button(surface, props))
             elif elem.tag == 'Input':
+                props = XMLParser.set_default_parameters(props, Input.DEFAULT)
                 dom.append(Input(surface, props))
             else:
                 raise Exception('Incorrect tag')
-            print(elem.tag)
-            print(elem.attrib)
         return dom
 
     @staticmethod
@@ -56,8 +55,6 @@ class XMLParser:
     def set_id(props):
         if 'id' not in props:
             props['id'] = str(randint(0, 10000000000))
-
-
 
     @staticmethod
     def set_default_parameters(props, default):

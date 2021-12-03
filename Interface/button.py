@@ -32,10 +32,6 @@ class Button(DOMElement):
         self.shift_pos = (properties['hover']['x'], properties['hover']['y'])
         self.shift_rect = self.surface.get_rect(topleft=self.shift_pos)
 
-        func = lambda: print("pressed")
-        # self.pos = pos
-        # self.func = func
-        #
 
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors) or self.shift_rect.collidepoint(cors)
