@@ -6,26 +6,25 @@ from event_manager import dom_event_manager
 
 
 class Button(DOMElement):
+    DEFAULT = {
+        'x': 0,
+        'y': 0,
+        'width': 200,
+        'height': 28,
+        'hover': {
+            'position': 'relative',
+            'x': 0,
+            'y': 0
+        }
+    }
+
     def __init__(self, screen, properties):
         self.screen = screen
         self.id = properties['id']
 
-        if 'x' not in properties:
-            properties['x'] = 0
-        if 'y' not in properties:
-            properties['y'] = 0
-        if 'width' not in properties:
-            properties['width'] = 200
-        if 'height' not in properties:
-            properties['height'] = 30
-        if 'text' not in properties:
-            properties['text'] = ''
-
-        if 'hover' in properties:
-            if 'x' not in properties['hover']:
-                properties['hover']['x'] = properties['x']
-            if 'y' not in properties['hover']:
-                properties['hover']['y'] = properties['y']
+        if properties['hover']['position'] == 'relative':
+            properties['hover']['x'] += properties['x']
+            properties['hover']['y'] += properties['y']
 
         self.surface = main_font.render(properties['text'], False, main_font_color)
         self.pos = (properties['x'], properties['y'])
