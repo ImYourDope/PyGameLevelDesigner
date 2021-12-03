@@ -1,9 +1,14 @@
+import pygame.mouse
+
 from settings import *
+from .dom_element import DOMElement
+from event_manager import dom_event_manager
 
 
-class Button:
+class Button(DOMElement):
     def __init__(self, screen, properties):
         self.screen = screen
+        self.id = properties['id']
 
         if 'x' not in properties:
             properties['x'] = 0
@@ -22,8 +27,6 @@ class Button:
             if 'y' not in properties['hover']:
                 properties['hover']['y'] = properties['y']
 
-
-
         self.surface = main_font.render(properties['text'], False, main_font_color)
         self.pos = (properties['x'], properties['y'])
         self.rect = self.surface.get_rect(topleft=self.pos)
@@ -35,17 +38,11 @@ class Button:
         # self.func = func
         #
 
-    def mouse_collision(self):
-        return self.rect.collidepoint(pygame.mouse.get_pos()) or self.shift_rect.collidepoint(pygame.mouse.get_pos())
+    def mouse_collision(self, cors):
+        return self.rect.collidepoint(cors) or self.shift_rect.collidepoint(cors)
 
     def draw(self):
-        if not self.mouse_collision():
+        if not dom_event_manager.ishovered(self.id):
             self.screen.blit(self.surface, (self.pos[0], self.pos[1]))
         else:
             self.screen.blit(self.surface, (self.shift_pos[0], self.shift_pos[1]))
-
-    def click(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if pygame.mouse.get_pressed()[0]:
-                if self.mouse_collision():
-                    self.func()

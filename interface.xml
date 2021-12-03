@@ -4,6 +4,7 @@
     height="700">
 
     <Button
+        id="open-test-screen"
         x="10"
         y="20"
         text="OPEN TEST SCREEN">
@@ -12,4 +13,9 @@
             x="20"
             y="20"/>
     </Button>
+<!--    <Input-->
+<!--        id="input"-->
+<!--        x="10"-->
+<!--        y="100"-->
+<!--        text="HELLO"/>-->
 </Layout>

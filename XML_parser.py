@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from random import randint
 
 from Interface import *
 
@@ -21,7 +22,8 @@ class XMLParser:
                 hover = elem.find('Hover')
                 if hover is not None:
                     elem.attrib['hover'] = XMLParser.convert_props(hover.attrib)
-
+                if 'id' not in elem.attrib:
+                    elem.attrib['id'] = str(randint(0, 10000000000))
                 dom.append(Button(surface, XMLParser.convert_props(elem.attrib)))
             elif elem.tag == 'Input':
                 dom.append(Input(surface, elem.attrib))
