@@ -7,44 +7,83 @@ class Singleton:
     def __new__(cls):
         if cls.instance is None:
             cls.instance = super(Singleton, cls).__new__(cls)
+            cls.instance.__dict__['dom'] = {}
             cls.instance.__dict__['dom_elements'] = {}
-            cls.instance.__dict__['data'] = {}
+
+            cls.instance.__dict__['data'] = {
+                'object_in_focus': None
+            }
         return cls.instance
+
+
+class DOMEventElement:
+    def __init__(self, elem, props=None):
+        if props is None:
+            self.props = {'hover': False, 'focus': False}
+        else:
+            self.props = props
+
+        self.id = elem.id
+        self.elem = elem
+
+        self.callbacks = {
+            'click': [],
+            'hover': [],
+            'input': [],
+            'change': []
+        }
+
+    def on(self, action, callback):
+        self.callbacks[action].append(callback)
+
+    def onclick(self, callback):
+        self.on('click', callback)
+
+    def onhover(self, callback):
+        self.on('hover', callback)
+
+    def oninput(self, callback):
+        self.on('input', callback)
+
+    def onchange(self, callback):
+        self.on('change', callback)
+
+    def mouse_collision(self, cors):
+        return self.elem.mouse_collision(cors)
+
+    def process_event(self, event_name, event):
+        if event_name == 'click':
+            self.elem.onclick(event)
+        elif event_name == 'hover':
+            self.elem.onhover(event)
+        elif event_name == 'input':
+            self.elem.oninput(event)
+
+        for callback in self.callbacks[event_name]:
+            callback(event)
+
+        for callback in self.callbacks['change']:
+            callback(event)
 
 
 class DOMEventManager(Singleton):
     def init_dom(self, dom):
         for elem in dom:
-            self.__init_attr(elem.id)
-            self.dom_elements[elem.id]['elem'] = elem
-            self.dom_elements[elem.id]['props'] = {
-                'hover': False,
-                'focus': False
-            }
-
-    def __init_attr(self, id):
-        self.dom_elements[id] = {}
-        self.dom_elements[id]['props'] = {}
-        self.dom_elements[id]['click'] = []
-        self.dom_elements[id]['hover'] = []
-        self.dom_elements[id]['input'] = []
-        self.dom_elements[id]['change'] = []
-
-    # def __getattr__(self, id):
-    #     if id not in self.dom_elements:
-    #         return None
-    #     return self.dom_elements[id]['elem']
+            self.dom[elem.id] = DOMEventElement(elem)
 
     def on(self, action, id, callback):
-        if id not in self.dom_elements:
-            self.__init_attr(id)
-        self.dom_elements[id][action].append(callback)
+        if id not in self.dom:
+            raise Exception('Incorrect ID')
+        self.dom[id].on(action, callback)
 
     def onclick(self, id, callback):
         self.on('click', id, callback)
 
     def onhover(self, id, callback):
         self.on('hover', id, callback)
+
+    def oninput(self, id, callback):
+        self.on('input', id, callback)
 
     def onchange(self, id, callback):
         self.on('change', id, callback)
@@ -53,39 +92,30 @@ class DOMEventManager(Singleton):
         return self.data['object_in_focus'] == id
 
     def ishovered(self, id):
-        return self.dom_elements[id]['props']['hover']
-
-    def _callback(self, id, event_name, event):
-        for callback in self.dom_elements[id][event_name]:
-            callback(event)
+        return self.dom[id].props['hover']
 
     def elem_collision(self, id, cors):
-        return self.dom_elements[id]['elem'].mouse_collision(cors)
-
+        return self.dom[id].mouse_collision(cors)
 
     def process_event(self, event):
         if event.type == pygame.KEYDOWN:
-            self.dom_elements[self.data['object_in_focus']]['elem'].oninput(event)
+            if self.data['object_in_focus'] is not None:
+                self.dom[self.data['object_in_focus']].process_event('input', event)
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            for id in self.dom_elements.keys():
-                if self.elem_collision(id, pygame.mouse.get_pos()):
-                    self.data['object_in_focus'] = id
-
-                    self.dom_elements[id]['elem'].onclick(event)
-                    self._callback(id, 'click', event)
+            for _, elem in self.dom.items():
+                if elem.mouse_collision(pygame.mouse.get_pos()):
+                    elem.process_event('click', event)
+                    self.data['object_in_focus'] = elem.id
+                    break
+            else:
+                self.data['object_in_focus'] = None
         elif event.type == pygame.MOUSEMOTION:
-            for id in self.dom_elements.keys():
-                if self.elem_collision(id, pygame.mouse.get_pos()):
-                    self.dom_elements[id]['props']['hover'] = True
-
-                    self.dom_elements[id]['elem'].onhover(event)
-                    self._callback(id, 'hover', event)
+            for _, elem in self.dom.items():
+                if elem.mouse_collision(pygame.mouse.get_pos()):
+                    elem.props['hover'] = True
+                    elem.process_event('hover', event)
                 else:
-                    self.dom_elements[id]['props']['hover'] = False
-
-
-
-
+                    elem.props['hover'] = False
 
 
 class EventManager(Singleton):

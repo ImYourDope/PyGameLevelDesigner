@@ -35,6 +35,8 @@ dom_event_manager.init_dom(dom)
 # create_main_screen_inputlines(screen)
 create_scrolling_cursors()
 
+dom_event_manager.oninput('input', lambda _: print(dom[1].text))
+
 while True:
 
     # DRAW SECTION
@@ -43,10 +45,7 @@ while True:
     if event_manager.grid_on:
         draw_grid(screen)
     draw_ui(screen)
-    # for b in main_screen_buttons:
-    #     b.draw()
-    # for i in main_screen_inputlines:
-    #     i.draw()
+
     for elem in dom:
         elem.draw()
 
@@ -67,8 +66,5 @@ while True:
             pygame.quit()
             exit()
 
-    # UPDATE SECTION
-    # for i in event_manager.active_inputlines:
-    #     i.update_text_surface()
     clock.tick(FPS)
     pygame.display.update()

@@ -66,10 +66,10 @@ right_scrolling_rect = pygame.Rect(left_margin + editing_screen_width - scrollin
                                    scrolling_margin, editing_screen_height)
 
 # INPUTLINE SETTINGS
-numbers_vocabulary = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
-letters_vocabulary = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
-capital_letters_vocabulary = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
-symbols_vocabulary = ('_', '-', "'", '@', '#')
+numbers_vocabulary = '0123456789'
+letters_vocabulary = 'abcdefghijklmnopqrstuvwxyz'
+capital_letters_vocabulary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+symbols_vocabulary = "_-'@#"
 inputline_vocabulary = numbers_vocabulary + letters_vocabulary + capital_letters_vocabulary + symbols_vocabulary
 inputline_background_color = (255, 255, 255)
 inputline_border_color = ui_border_color
