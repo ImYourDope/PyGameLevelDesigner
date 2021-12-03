@@ -1,5 +1,5 @@
 from Interface.button import *
-from grid import grid_button
+from grid import toggle_grid
 from popupscreens import *
 
 from event_manager import event_manager
