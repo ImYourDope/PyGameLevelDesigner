@@ -13,9 +13,10 @@
             x="20"
             y="20"/>
     </Button>
-<!--    <Input-->
-<!--        id="input"-->
-<!--        x="10"-->
-<!--        y="100"-->
-<!--        text="HELLO"/>-->
+    <Input
+        id="input"
+        x="10"
+        y="100"
+
+        text="HELLO"/>
 </Layout>

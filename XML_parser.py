@@ -26,7 +26,7 @@ class XMLParser:
                     elem.attrib['id'] = str(randint(0, 10000000000))
                 dom.append(Button(surface, XMLParser.convert_props(elem.attrib)))
             elif elem.tag == 'Input':
-                dom.append(Input(surface, elem.attrib))
+                dom.append(Input(surface, XMLParser.convert_props(elem.attrib)))
             else:
                 raise Exception('Incorrect tag')
             print(elem.tag)
