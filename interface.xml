@@ -1,32 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Layout
-    width="1400"
-    height="700">
+<Layout width="1400"
+        height="700">
 
-    <Button
-        id="open-test-screen"
-        x="10"
-        y="20"
-        text="OPEN TEST SCREEN">
+    <Button id="open-test-screen-button"
+            x="10"
+            y="5"
+            text="OPEN TEST SCREEN">
 
-        <Hover
-            x="20"
-            y="20"/>
+        <Hover x="20"
+               y="5"/>
     </Button>
-    <Button
-        id="grid-button"
-        x="10"
-        y="50"
-        text="GRID">
+    <Button id="load-project-button"
+            x="10"
+            y="33"
+            text="LOAD PROJECT">
 
-        <Hover
-            x="20"
-            y="50"/>
+        <Hover x="20"
+               y="33"/>
     </Button>
-    <Input
-        id="input"
-        x="10"
-        y="100"
 
-        text="HELLO"/>
+    <Button id="save-project-button"
+            x="10"
+            y="61"
+            text="SAVE PROJECT">
+        <Hover x="20"
+               y="61"/>
+    </Button>
+
+    <Button id="create-layer-button"
+            x="10"
+            y="89"
+            text="CREATE LAYER">
+        <Hover x="20"
+               y="89"/>
+    </Button>
+
+    <Button id="create-level-button"
+            x="10"
+            y="117"
+            text="CREATE LEVEL">
+        <Hover x="20"
+               y="117"/>
+    </Button>
+    <Input id="input"
+           x="10"
+           y="150"
+           text="HELLO"/>
 </Layout>

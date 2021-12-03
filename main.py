@@ -5,7 +5,7 @@ import pygame
 from userinterface import *
 from canvas import *
 from grid import *
-# from buttons import *
+from buttons import *
 # from inputlines import *
 # from popupscreens import *
 
@@ -27,7 +27,7 @@ dom = xml.read_dom(screen)
 
 dom_event_manager.init_dom(dom)
 
-dom_event_manager.onclick('grid-button', toggle_grid)
+# dom_event_manager.onclick('grid-button', toggle_grid)
 
 # CREATE SECTION
 # create_popup_screen_buttons(screen)
@@ -37,7 +37,8 @@ dom_event_manager.onclick('grid-button', toggle_grid)
 # create_main_screen_inputlines(screen)
 create_scrolling_cursors()
 
-dom_event_manager.oninput('input', lambda _: print(dom[2].text))
+# dom_event_manager.oninput('input', lambda _: print(dom[2].text))
+# create_main_screen_buttons("pohui")
 
 while True:
 

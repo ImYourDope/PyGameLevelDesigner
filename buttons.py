@@ -8,10 +8,12 @@ from event_manager import event_manager
 def create_popup_screen_buttons(screen):
     test_popup_screen_buttons.append(Button(screen, 'CLOSE TEST SCREEN', (200, 200), popup_screen_close, 15, 0))
 
-
+class A:
+    append = print
 def create_main_screen_buttons(screen):
 
     print(event_manager.test_popup_screen)
+    main_screen_buttons = A()
     main_screen_buttons.append(
         Button(screen, 'OPEN TEST SCREEN', (10, starting_button_pos), event_manager.test_popup_screen.start, 15, 0))
     main_screen_buttons.append(
@@ -27,6 +29,7 @@ def create_main_screen_buttons(screen):
                0))
 
     event_manager.active_buttons = main_screen_buttons
+
 
 
 
