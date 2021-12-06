@@ -31,7 +31,8 @@ class XMLParser:
                 dom.append(Input(props))
             else:
                 raise Exception('Incorrect tag')
-        return Layout(dom)
+
+        return Layout(dom, XMLParser.set_default_parameters(self.read_metadata(), Layout.DEFAULT))
 
     @staticmethod
     def convert_props(props):

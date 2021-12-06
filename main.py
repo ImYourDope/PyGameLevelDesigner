@@ -8,8 +8,9 @@ from grid import *
 # from inputlines import *
 # from popupscreens import *
 
-from event_manager import event_manager, dom_event_manager
+from event_manager import event_manager
 from XML_parser import XMLParser
+from Layout import Layout, layout_manager
 
 event_manager.test_popup_screen = "hello"
 
@@ -22,11 +23,15 @@ screen = pygame.display.set_mode((info['width'], info['height']))
 pygame.display.set_caption('PyGame Level Designer')
 clock = pygame.time.Clock()
 
-dom = xml.read_dom()
+root = xml.read_dom()
 
-dom_event_manager.init_dom(dom.dom)
+xml = XMLParser('popup.xml')
+popup = xml.read_dom()
+popup.onclick('close-popup', lambda _: layout_manager.pop())
 
-dom_event_manager.onclick('open-test-screen-button', toggle_grid)
+
+
+root.onclick('open-test-screen-button', lambda _: layout_manager.push(popup))
 
 # CREATE SECTION
 # create_popup_screen_buttons(screen)
@@ -39,6 +44,8 @@ create_scrolling_cursors()
 # dom_event_manager.oninput('input', lambda _: print(dom[2].text))
 # create_main_screen_buttons("pohui")
 
+layout_manager.push(root)
+
 while True:
 
     # DRAW SECTION
@@ -48,11 +55,8 @@ while True:
         draw_grid(screen)
     draw_ui(screen)
 
-    for elem in dom.dom:
-        elem.draw(screen)
+    layout_manager.draw(screen)
 
-    # if event_manager.popup_screen_on:
-    #     event_manager.popup_screen.draw()
     if event_manager.main_screen_on:
         draw_scrolling_cursor(screen)
 
@@ -62,7 +66,7 @@ while True:
             scroll_canvas(event)
 
         if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION):
-            dom_event_manager.process_event(event)
+            layout_manager.process_event(event)
 
         if event.type == pygame.QUIT:
             pygame.quit()
