@@ -22,12 +22,9 @@ class XMLParser:
             props = XMLParser.read_properties(elem)
             XMLParser.convert_props(props)
             XMLParser.set_id(props)
-            print(props)
 
             if elem.tag == 'Button':
                 props = XMLParser.set_default_parameters(props, Button.DEFAULT)
-                print(props)
-
                 dom.append(Button(props))
             elif elem.tag == 'Input':
                 props = XMLParser.set_default_parameters(props, Input.DEFAULT)

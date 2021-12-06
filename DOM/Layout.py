@@ -104,12 +104,16 @@ class Layout:
                 self.properties['y'])
 
     def draw(self, screen):
-        surface = pygame.Surface(self.rect())
-        surface.fill(ui_main_color)
-        # pygame.draw.rect(screen, ui_main_color, self.rect())
-        for elem in self.dom.values():
-            elem.draw(surface)
-        screen.blit(surface, self.cors())
+        if 'id' not in self.__dict__ or self.id != 'root':
+            surface = pygame.Surface(self.rect())
+            surface.fill(ui_main_color)
+            # pygame.draw.rect(screen, ui_main_color, self.rect())
+            for elem in self.dom.values():
+                elem.draw(surface)
+            screen.blit(surface, self.cors())
+        else:
+            for elem in self.dom.values():
+                elem.draw(screen)
 
 
 class LayoutManager(Singleton):

@@ -43,6 +43,11 @@
         <Hover position="relative"
                x="10"/>
     </Button>
+
+    <Button id="toggle-grid"
+            x="300"
+            y="5"
+            text="GRID"/>
     <Input id="input"
            x="10"
            y="150"

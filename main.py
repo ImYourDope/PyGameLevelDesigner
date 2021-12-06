@@ -1,13 +1,13 @@
 from userinterface import *
 from canvas import *
-from Grid import *
 from EventManager import eventManager
 from XMLparser import XMLParser
 from DOM.Layout import layout_manager
+from DOM.DOMEventElement import DOMEventElement
+from Interface import Grid
 
 from sys import exit
 import pygame
-
 
 pygame.init()
 
@@ -19,6 +19,10 @@ pygame.display.set_caption('PyGame Level Designer')
 clock = pygame.time.Clock()
 
 root = xml.read_dom()
+root.id = 'root'
+grid = Grid({})
+
+root.onclick('toggle-grid', grid.toggle_grid)
 
 xml = XMLParser('tileloaderlayout.xml')
 popup = xml.read_dom()
@@ -35,9 +39,10 @@ while True:
     # DRAW SECTION
     draw_ui_background(screen)
     draw_canvas(screen)
-    if eventManager.grid_on:
-        draw_grid(screen)
     draw_ui(screen)
+    if eventManager.grid_on:
+        grid.draw(screen)
+
 
     layout_manager.draw(screen)
 
