@@ -1,8 +1,7 @@
 from settings import *
 
 from .dom_element import DOMElement
-from event_manager import dom_event_manager
-
+from Layout import layout_manager
 
 class Input(DOMElement):
     DEFAULT = {
@@ -27,9 +26,10 @@ class Input(DOMElement):
         self.render_rect = None
         self.render_surface = pygame.Surface((1, 1))
         self.font = pygame.font.Font(inputline_font, self.rect.height - 2 * inputline_border_thickness)
-        self.update_surface()
 
     def draw(self, screen):
+        self.update_surface()
+
         pygame.draw.rect(screen, inputline_background_color, self.rect)
         pygame.draw.rect(screen, inputline_border_color, self.rect, inputline_border_thickness)
         screen.blit(self.render_surface.subsurface(
@@ -45,7 +45,7 @@ class Input(DOMElement):
         self.render_surface = pygame.Surface((self.render_rect.width + 7, self.render_rect.height))
         self.render_surface.fill(inputline_background_color)
         self.render_surface.blit(self.render, (0, 0))
-        if dom_event_manager.infocus(self.id):
+        if layout_manager.infocus(self.id):
             pygame.draw.line(self.render_surface, 'black', (self.render_rect.width + 4, 2),
                              (self.render_rect.width + 4, self.render_rect.height - 2), 3)
 
@@ -67,4 +67,4 @@ class Input(DOMElement):
         self.update_surface()
 
     def inputline_end(self, output):
-        output = self.texte
+        output = self.text

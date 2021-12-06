@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Layout width="1400"
-        height="700">
+<Layout x="100"
+        y="100"
+        width="200"
+        height="200">
+    <Input id="input-text"
+           x="10"
+           y="150"/>
 
     <Button id="close-popup"
             x="10"
             y="5"
-            text="CLOSE"/>
+            text="CLOSE">
+        <Hover position="relative"
+               x="10"/>
+    </Button>
 </Layout>

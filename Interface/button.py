@@ -2,7 +2,7 @@ import pygame.mouse
 
 from settings import *
 from .dom_element import DOMElement
-from event_manager import dom_event_manager
+from Layout import layout_manager
 
 
 class Button(DOMElement):
@@ -35,7 +35,9 @@ class Button(DOMElement):
         return self.rect.collidepoint(cors) or self.shift_rect.collidepoint(cors)
 
     def draw(self, screen):
-        if not dom_event_manager.ishovered(self.id):
+        if self.id == 'close-popup':
+            pass
+        if not layout_manager.ishovered(self.id):
             screen.blit(self.surface, (self.pos[0], self.pos[1]))
         else:
             screen.blit(self.surface, (self.shift_pos[0], self.shift_pos[1]))

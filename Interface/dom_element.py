@@ -20,3 +20,6 @@ class DOMElement:
 
     def onunfocus(self, event):
         """Processes unfocus event"""
+
+    def draw(self, screen):
+        """Draws self on screen"""
