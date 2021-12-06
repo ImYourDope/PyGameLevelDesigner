@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="1400"
+        height="700">
+
+    <Button id="close-popup"
+            x="10"
+            y="5"
+            text="CLOSE"/>
+</Layout>

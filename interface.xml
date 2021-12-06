@@ -8,7 +8,8 @@
             text="OPEN TEST SCREEN">
 
         <Hover position="relative"
-               x="10"/>
+               x="10"
+        />
     </Button>
     <Button id="load-project-button"
             x="10"

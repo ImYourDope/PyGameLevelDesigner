@@ -30,6 +30,8 @@ class DOMEventElement:
             'click': [],
             'hover': [],
             'input': [],
+            'focus': [],
+            'unfocus': [],
             'change': []
         }
 
@@ -45,19 +47,29 @@ class DOMEventElement:
     def oninput(self, callback):
         self.on('input', callback)
 
+    def onfocus(self, callback):
+        self.on('focus', callback)
+
+    def onunfocus(self, callback):
+        self.on('unfocus', callback)
+
     def onchange(self, callback):
         self.on('change', callback)
 
     def mouse_collision(self, cors):
         return self.elem.mouse_collision(cors)
 
-    def process_event(self, event_name, event):
+    def process_event(self, event_name, event={}):
         if event_name == 'click':
             self.elem.onclick(event)
         elif event_name == 'hover':
             self.elem.onhover(event)
         elif event_name == 'input':
             self.elem.oninput(event)
+        elif event_name == 'focus':
+            self.elem.onfocus(event)
+        elif event_name == 'unfocus':
+            self.elem.onunfocus(event)
 
         for callback in self.callbacks[event_name]:
             callback(event)
@@ -97,6 +109,18 @@ class DOMEventManager(Singleton):
     def elem_collision(self, id, cors):
         return self.dom[id].mouse_collision(cors)
 
+    def change_focus(self, new_focus):
+        old_focus = self.data['object_in_focus']
+        self.data['object_in_focus'] = new_focus
+
+        if old_focus is not None:
+            prev = self.dom[old_focus]
+            prev.process_event('unfocus')
+
+        if new_focus is not None:
+            next = self.dom[new_focus]
+            next.process_event('focus')
+
     def process_event(self, event):
         if event.type == pygame.KEYDOWN:
             if self.data['object_in_focus'] is not None:
@@ -105,10 +129,10 @@ class DOMEventManager(Singleton):
             for _, elem in self.dom.items():
                 if elem.mouse_collision(pygame.mouse.get_pos()):
                     elem.process_event('click', event)
-                    self.data['object_in_focus'] = elem.id
+                    self.change_focus(elem.id)
                     break
             else:
-                self.data['object_in_focus'] = None
+                self.change_focus(None)
         elif event.type == pygame.MOUSEMOTION:
             for _, elem in self.dom.items():
                 if elem.mouse_collision(pygame.mouse.get_pos()):

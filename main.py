@@ -5,7 +5,6 @@ import pygame
 from userinterface import *
 from canvas import *
 from grid import *
-from buttons import *
 # from inputlines import *
 # from popupscreens import *
 
@@ -23,9 +22,9 @@ screen = pygame.display.set_mode((info['width'], info['height']))
 pygame.display.set_caption('PyGame Level Designer')
 clock = pygame.time.Clock()
 
-dom = xml.read_dom(screen)
+dom = xml.read_dom()
 
-dom_event_manager.init_dom(dom)
+dom_event_manager.init_dom(dom.dom)
 
 dom_event_manager.onclick('open-test-screen-button', toggle_grid)
 
@@ -49,13 +48,13 @@ while True:
         draw_grid(screen)
     draw_ui(screen)
 
-    for elem in dom:
-        elem.draw()
+    for elem in dom.dom:
+        elem.draw(screen)
 
     # if event_manager.popup_screen_on:
     #     event_manager.popup_screen.draw()
-    # if event_manager.main_screen_on:
-    #     draw_scrolling_cursor(screen)
+    if event_manager.main_screen_on:
+        draw_scrolling_cursor(screen)
 
     # EVENT SECTION
     for event in pygame.event.get():

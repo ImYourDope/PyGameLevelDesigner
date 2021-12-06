@@ -14,3 +14,9 @@ class DOMElement:
 
     def oninput(self, event):
         """Processes input"""
+
+    def onfocus(self, event):
+        """Processes hover event"""
+
+    def onunfocus(self, event):
+        """Processes unfocus event"""

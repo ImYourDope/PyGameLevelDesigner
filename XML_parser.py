@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from random import randint
 
 from Interface import *
+from Layout import Layout
 
 
 class XMLParser:
@@ -15,7 +16,7 @@ class XMLParser:
     def read_metadata(self):
         return XMLParser.convert_props(self.root.attrib)
 
-    def read_dom(self, surface):
+    def read_dom(self):
         dom = []
         for elem in self.root:
             props = XMLParser.read_properties(elem)
@@ -24,13 +25,13 @@ class XMLParser:
 
             if elem.tag == 'Button':
                 props = XMLParser.set_default_parameters(props, Button.DEFAULT)
-                dom.append(Button(surface, props))
+                dom.append(Button(props))
             elif elem.tag == 'Input':
                 props = XMLParser.set_default_parameters(props, Input.DEFAULT)
-                dom.append(Input(surface, props))
+                dom.append(Input(props))
             else:
                 raise Exception('Incorrect tag')
-        return dom
+        return Layout(dom)
 
     @staticmethod
     def convert_props(props):

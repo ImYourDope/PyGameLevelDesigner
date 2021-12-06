@@ -14,8 +14,7 @@ class Input(DOMElement):
         'type': 'text'
     }
 
-    def __init__(self, screen, properties):
-        self.screen = screen
+    def __init__(self, properties):
         self.id = properties['id']
 
         self.rect = pygame.Rect(properties['x'],
@@ -30,10 +29,10 @@ class Input(DOMElement):
         self.font = pygame.font.Font(inputline_font, self.rect.height - 2 * inputline_border_thickness)
         self.update_surface()
 
-    def draw(self):
-        pygame.draw.rect(self.screen, inputline_background_color, self.rect)
-        pygame.draw.rect(self.screen, inputline_border_color, self.rect, inputline_border_thickness)
-        self.screen.blit(self.render_surface.subsurface(
+    def draw(self, screen):
+        pygame.draw.rect(screen, inputline_background_color, self.rect)
+        pygame.draw.rect(screen, inputline_border_color, self.rect, inputline_border_thickness)
+        screen.blit(self.render_surface.subsurface(
             self.render_surface.get_width() - min(self.rect.width - 4, self.render_surface.get_width()),
             self.render_surface.get_height() - min(self.rect.height, self.render_surface.get_height()),
             min(self.rect.width - 4, self.render_surface.get_width()),
@@ -52,6 +51,12 @@ class Input(DOMElement):
 
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)
+
+    def onfocus(self, event):
+        self.update_surface()
+
+    def onunfocus(self, event):
+        self.update_surface()
 
     def oninput(self, event):
         if event.key == pygame.K_BACKSPACE:
