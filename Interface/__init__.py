@@ -1,3 +1,4 @@
-from .button import Button
+from .Button import Button
 from .toggle import Toggle
-from .input import Input
+from .Input import Input
+from .Label import Label

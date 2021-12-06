@@ -7,6 +7,8 @@
            x="10"
            y="150"/>
 
+    <Label x="10" y="40" text="hello from text field"/>
+
     <Button id="close-popup"
             x="10"
             y="5"

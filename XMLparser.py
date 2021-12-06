@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 from random import randint
 
 from Interface import *
-from Layout import Layout
+from DOM.Layout import Layout
 
 
 class XMLParser:
@@ -29,6 +29,9 @@ class XMLParser:
             elif elem.tag == 'Input':
                 props = XMLParser.set_default_parameters(props, Input.DEFAULT)
                 dom.append(Input(props))
+            elif elem.tag == 'Label':
+                props = XMLParser.set_default_parameters(props, Input.DEFAULT)
+                dom.append(Label(props))
             else:
                 raise Exception('Incorrect tag')
 

@@ -1,9 +1,9 @@
 from settings import *
 
-from .dom_element import DOMElement
-from Layout import layout_manager
+from DOM.ElementInterface import ElementInterface
+from DOM.Layout import layout_manager
 
-class Input(DOMElement):
+class Input(ElementInterface):
     DEFAULT = {
         'x': 0,
         'y': 0,

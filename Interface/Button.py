@@ -1,11 +1,9 @@
-import pygame.mouse
-
 from settings import *
-from .dom_element import DOMElement
-from Layout import layout_manager
+from DOM.ElementInterface import ElementInterface
+from DOM.Layout import layout_manager
 
 
-class Button(DOMElement):
+class Button(ElementInterface):
     DEFAULT = {
         'x': 0,
         'y': 0,
@@ -35,8 +33,6 @@ class Button(DOMElement):
         return self.rect.collidepoint(cors) or self.shift_rect.collidepoint(cors)
 
     def draw(self, screen):
-        if self.id == 'close-popup':
-            pass
         if not layout_manager.ishovered(self.id):
             screen.blit(self.surface, (self.pos[0], self.pos[1]))
         else:
