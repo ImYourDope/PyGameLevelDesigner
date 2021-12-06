@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="1400"
+        height="700">
+
+    <Button id="open-test-screen-button"
+            x="10"
+            y="5"
+            text="OPEN TEST SCREEN">
+
+        <Hover position="relative"
+               x="10"
+        />
+    </Button>
+    <Button id="load-project-button"
+            x="10"
+            y="33"
+            text="LOAD PROJECT">
+
+        <Hover position="relative"
+               x="10"/>
+    </Button>
+
+    <Button id="save-project-button"
+            x="10"
+            y="61"
+            text="SAVE PROJECT">
+        <Hover position="relative"
+               x="10"/>
+    </Button>
+
+    <Button id="create-layer-button"
+            x="10"
+            y="89"
+            text="CREATE LAYER">
+        <Hover position="relative"
+               x="10"/>
+    </Button>
+
+    <Button id="create-level-button"
+            x="10"
+            y="117"
+            text="CREATE LEVEL">
+        <Hover position="relative"
+               x="10"/>
+    </Button>
+    <Input id="input"
+           x="10"
+           y="150"
+           text="HELLO"/>
+</Layout>
