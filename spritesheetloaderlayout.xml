@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="800"
+        height="460"
+        x="300"
+        y="125">
+
+    <Button id="close-popup"
+            x="40"
+            y="400"
+            width="150"
+            height="40"
+            text="CLOSE"/>
+
+    <Button id="skip-tile"
+            x="325"
+            y="400"
+            width="150"
+            height="40"
+            text="SKIP"/>
+
+    <Button id="next-tile"
+            x="610"
+            y="400"
+            width="150"
+            height="40"
+            text="NEXT"/>
+
+    <Input id="input-tile_name"
+           width="290"
+           height="40"
+           x="255"
+           y="340"/>
+
+    <Label height="40"
+           x="400"
+           y="290"
+           text="Enter tile name:"/>
+
+    <Image id="current-loading-tile"
+           width="192"
+           height="192"
+           x="400"
+           y="170"/>
+
+    <Label height="40"
+           x="400"
+           y="10"
+           text="LOAD SPRITESHEET"/>
+
+    <Label id="spritesheet-tile-counter"
+           x="750"
+           y="10"
+           height="40"/>
+
+</Layout>
