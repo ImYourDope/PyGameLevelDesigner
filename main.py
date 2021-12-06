@@ -37,11 +37,13 @@ layout_manager.push(root)
 while True:
 
     # DRAW SECTION
+
     draw_ui_background(screen)
     draw_canvas(screen)
-    draw_ui(screen)
     if eventManager.grid_on:
         grid.draw(screen)
+    draw_ui(screen)
+
 
 
     layout_manager.draw(screen)
