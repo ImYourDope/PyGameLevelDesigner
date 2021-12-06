@@ -22,18 +22,22 @@ class XMLParser:
             props = XMLParser.read_properties(elem)
             XMLParser.convert_props(props)
             XMLParser.set_id(props)
+            print(props)
 
             if elem.tag == 'Button':
                 props = XMLParser.set_default_parameters(props, Button.DEFAULT)
+                print(props)
+
                 dom.append(Button(props))
             elif elem.tag == 'Input':
                 props = XMLParser.set_default_parameters(props, Input.DEFAULT)
                 dom.append(Input(props))
             elif elem.tag == 'Label':
-                props = XMLParser.set_default_parameters(props, Input.DEFAULT)
+                props = XMLParser.set_default_parameters(props, Label.DEFAULT)
                 dom.append(Label(props))
             else:
-                raise Exception('Incorrect tag')
+                pass
+                # raise Exception('Incorrect tag')
 
         return Layout(dom, XMLParser.set_default_parameters(self.read_metadata(), Layout.DEFAULT))
 
@@ -64,11 +68,14 @@ class XMLParser:
     @staticmethod
     def set_default_parameters(props, default):
         for key in default.keys():
-            if not key in props:
+            if type(default[key]) is dict:
+                if key not in props:
+                    props[key] = {}
+                XMLParser.set_default_parameters(props[key], default[key])
+
+            if key not in props:
                 props[key] = default[key]
-            else:
-                if type(props[key]) is dict:
-                    XMLParser.set_default_parameters(props[key], default[key])
+
         return props
 
 

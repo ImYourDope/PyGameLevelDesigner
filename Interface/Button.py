@@ -36,4 +36,6 @@ class Button(ElementInterface):
         if not layout_manager.ishovered(self.id):
             screen.blit(self.surface, (self.pos[0], self.pos[1]))
         else:
+            if self.id == 'save-tile':
+                print("hello")
             screen.blit(self.surface, (self.shift_pos[0], self.shift_pos[1]))

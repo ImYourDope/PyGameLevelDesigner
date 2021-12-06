@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 
 root = xml.read_dom()
 
-xml = XMLParser('popup.xml')
+xml = XMLParser('tileloaderlayout.xml')
 popup = xml.read_dom()
 popup.onclick('close-popup', lambda _: layout_manager.pop())
 
