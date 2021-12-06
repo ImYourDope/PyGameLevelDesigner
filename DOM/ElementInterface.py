@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class DOMElement:
+class ElementInterface:
     @abstractmethod
     def mouse_collision(self, pos):
         """True if mouse inside object, False elsewhere"""

@@ -1,6 +1,7 @@
 import pygame
 
-from event_manager import DOMEventElement, Singleton
+from EventManager import Singleton
+from DOM.DOMEventElement import DOMEventElement
 from settings import ui_main_color
 
 
@@ -89,6 +90,11 @@ class Layout:
                 else:
                     elem.props['hover'] = False
 
+    def disable(self):
+        self.change_focus(None)
+        for elem in self.dom.values():
+            elem.props['hover'] = False
+
     def rect(self):
         return (self.properties['width'],
                 self.properties['height'])
@@ -110,13 +116,17 @@ class LayoutManager(Singleton):
     layouts = []
 
     def push(self, layout):
+        if self.last() is not None:
+            self.last().disable()
         self.layouts.append(layout)
 
     def pop(self):
         self.layouts.pop()
 
     def last(self):
-        return self.layouts[len(self.layouts) - 1]
+        if len(self.layouts) > 0:
+            return self.layouts[len(self.layouts) - 1]
+        return None
 
     def cors_to_relative_pos(self, cors):
         new_cors = [*cors]

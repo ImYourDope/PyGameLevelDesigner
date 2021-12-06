@@ -6,7 +6,7 @@ grid.fill(grid_colorkey)
 
 
 def toggle_grid(e):
-    event_manager.grid_on = not event_manager.grid_on
+    eventManager.grid_on = not eventManager.grid_on
 
 
 def draw_grid(screen):
