@@ -84,4 +84,4 @@ class XMLParser:
         return props
 
 
-ml = XMLParser('interface.xml')
+ml = XMLParser('main.xml')

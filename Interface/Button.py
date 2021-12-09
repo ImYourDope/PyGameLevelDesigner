@@ -11,6 +11,7 @@ class Button(ElementInterface):
         'y': 0,
         'width': 200,
         'height': 28,
+        'text': '',
         'align': {
             'x': 'left',
             'y': 'top'

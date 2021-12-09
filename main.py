@@ -1,10 +1,16 @@
 from userinterface import *
 from canvas import *
 from EventManager import eventManager
-from XMLparser import XMLParser
-from DOM.Layout import layout_manager
-from DOM.DOMEventElement import DOMEventElement
 from Interface import Grid
+from XMLparser import XMLParser
+from DOM import layout_manager
+
+# WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
+from layout_loader import init_layouts
+init_layouts()
+from layouts import *
+# END OF WARNING
+
 
 from spritesheetloader import load_spritesheet
 
@@ -14,7 +20,7 @@ import pygame
 
 pygame.init()
 
-xml = XMLParser('interface.xml')
+xml = XMLParser('main.xml')
 info = xml.read_metadata()
 
 screen = pygame.display.set_mode((info['width'], info['height']))
@@ -25,21 +31,23 @@ root = xml.read_dom()
 root.id = 'root'
 grid = Grid({})
 
-root.onclick('toggle-grid', grid.toggle_grid)
 
-xml = XMLParser('spritesheetloaderlayout.xml')  # popup xml file
-popup = xml.read_dom()
-popup.onclick('close-popup', lambda _: layout_manager.pop())
-
-
-spritesheets = load_spritesheet('testspritesheet.png')
+spritesheets = load_spritesheet('TX_Tileset_Grass.png')
 print(spritesheets)
-popup.getElementByID('current-loading-tile').elem.update_image(spritesheets[0][0])
+spritesheetloader.getElementByID('current-loading-tile').elem.update_image(spritesheets[0][1])
+
+
+
+root.onclick('toggle-grid', grid.toggle_grid)
+root.onclick('open-test-screen-button', lambda _: layout_manager.push(spritesheetloader))
+
+
+
 
 
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
-root.onclick('open-test-screen-button', lambda _: layout_manager.push(popup))
+# root.onclick('open-test-screen-button', lambda _: layout_manager.push())
 
 create_scrolling_cursors()
 
