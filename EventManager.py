@@ -13,7 +13,6 @@ class Singleton:
         return cls.instance
 
 
-
 class EventManager(Singleton):
     def __init_attr(self, key):
         self.dom_elements[key] = {}

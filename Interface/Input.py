@@ -1,7 +1,6 @@
 from settings import *
 
-from DOM.ElementInterface import ElementInterface
-from DOM.Layout import layout_manager
+from DOM import ElementInterface, layout_manager
 
 class Input(ElementInterface):
     DEFAULT = {

@@ -1,8 +1,7 @@
 import pygame
 
 from settings import *
-from DOM.ElementInterface import ElementInterface
-from DOM.Layout import layout_manager
+from DOM import layout_manager, ElementInterface
 
 
 class Button(ElementInterface):
@@ -75,5 +74,5 @@ class Button(ElementInterface):
 
         pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.rect_size), 2)
 
-    def setText(self, text):
+    def set_text(self, text):
         self.surface = main_font.render(text, False, main_font_color)

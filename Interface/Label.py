@@ -49,15 +49,9 @@ class Label(ElementInterface):
     def update_surface(self):
         self.surface = main_font.render(self.text, False, main_font_color)
 
-        # self.render = self.font.render(self.text, False, inputline_font_color)
-        # self.render_rect = self.render.get_rect()
-        # self.render_surface = pygame.Surface((self.render_rect.width + 7, self.render_rect.height))
-        # self.render_surface.fill(inputline_background_color)
-        # self.render_surface.blit(self.render, (0, 0))
-
     def mouse_collision(self, cors):
         return False  # self.rect.collidepoint(cors)
 
-    def setText(self, text):
+    def set_text(self, text):
         self.text = text
         self.update_surface()

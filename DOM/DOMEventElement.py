@@ -44,6 +44,7 @@ class DOMEventElement:
     def mouse_collision(self, cors):
         return self.elem.mouse_collision(cors)
 
+
     def process_event(self, event_name, event={}):
         if event_name == 'click':
             self.elem.onclick(event)
