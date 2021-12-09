@@ -59,4 +59,3 @@ class Image(ElementInterface):
     def draw(self, screen):
         if 'surface' in self.__dict__:
             screen.blit(self.surface, self.surface_blitting_pos())
-            pygame.draw.rect(screen, 'white', (self.surface_blitting_pos(), self.rect_size))

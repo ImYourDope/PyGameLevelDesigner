@@ -6,6 +6,8 @@ from DOM.Layout import layout_manager
 from DOM.DOMEventElement import DOMEventElement
 from Interface import Grid
 
+from spritesheetloader import load_spritesheet
+
 
 from sys import exit
 import pygame
@@ -28,7 +30,11 @@ root.onclick('toggle-grid', grid.toggle_grid)
 xml = XMLParser('spritesheetloaderlayout.xml')  # popup xml file
 popup = xml.read_dom()
 popup.onclick('close-popup', lambda _: layout_manager.pop())
-popup.getElementByID('current-loading-tile').elem.update_image(pygame.image.load('testspritesheet.png'))
+
+
+spritesheets = load_spritesheet('testspritesheet.png')
+print(spritesheets)
+popup.getElementByID('current-loading-tile').elem.update_image(spritesheets[0][0])
 
 
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
@@ -51,13 +57,13 @@ while True:
 
     layout_manager.draw(screen)
 
-    if eventManager.main_screen_on:
-        draw_scrolling_cursor(screen)
+    # if eventManager.main_screen_on:
+    #     draw_scrolling_cursor(screen)
 
     # EVENT SECTION
     for event in pygame.event.get():
-        if eventManager.main_screen_on:
-            scroll_canvas(event)
+        # if eventManager.main_screen_on:
+        #     scroll_canvas(event)
 
         if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION):
             layout_manager.process_event(event)
