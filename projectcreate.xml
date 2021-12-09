@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="800"
+        height="350"
+        x="300"
+        y="175">
+
+    <Label height="40"
+           x="400"
+           y="10"
+           text="CREATE PROJECT"/>
+
+    <Label height="40"
+           x="200"
+           y="70"
+           text="Project name:"/>
+
+    <Label height="40"
+           x="600"
+           y="70"
+           text="Tile size:"/>
+
+    <Label height="40"
+           x="200"
+           y="180"
+           text="Canvas width:"/>
+
+    <Label height="40"
+           x="600"
+           y="180"
+           text="Canvas height:"/>
+
+    <Input id="input-project-name"
+           x="100"
+           y="120"
+           width="200"
+           height="40"/>
+
+    <Input id="input-canvas-width"
+           x="100"
+           y="230"
+           width="200"
+           height="40"/>
+
+    <Input id="input-tile-size"
+           x="500"
+           y="120"
+           width="200"
+           height="40"/>
+
+    <Input id="input-canvas-height"
+           x="500"
+           y="230"
+           width="200"
+           height="40"/>
+
+    <Button id="close-popup"
+            x="100"
+            y="290"
+            width="200"
+            height="40"/>
+
+    <Button id="ok-create-project"
+            x="500"
+            y="290"
+            width="200"
+            height="40"/>
+
+</Layout>
