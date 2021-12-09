@@ -24,7 +24,7 @@ grid = Grid({})
 
 root.onclick('toggle-grid', grid.toggle_grid)
 
-xml = XMLParser('spritesheetloaderlayout.xml')
+xml = XMLParser('spritesheetloaderlayout.xml')  # popup xml file
 popup = xml.read_dom()
 popup.onclick('close-popup', lambda _: layout_manager.pop())
 
@@ -47,8 +47,6 @@ while True:
     if eventManager.grid_on:
         grid.draw(screen)
     draw_ui(screen)
-
-
 
     layout_manager.draw(screen)
 
