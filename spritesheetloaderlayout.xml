@@ -54,12 +54,18 @@
            width="192"
            height="192"
            x="400"
-           y="170"/>
+           y="170">
+        <Align x="center" y="center"/>
+    </Image>
 
     <Label height="40"
            x="400"
            y="10"
-           text="LOAD SPRITESHEET"/>
+           text="LOAD SPRITESHEET">
+
+        <Align x="center"
+               y="center"/>
+    </Label>
 
     <Label id="spritesheet-tile-counter"
            x="750"

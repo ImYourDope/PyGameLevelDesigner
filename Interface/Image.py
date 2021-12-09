@@ -1,3 +1,5 @@
+import pygame.image
+
 from DOM.ElementInterface import ElementInterface
 
 
@@ -21,11 +23,40 @@ class Image(ElementInterface):
     def __init__(self, properties):
         self.id = properties['id']
         self.pos = properties['x'], properties['y']
+        self.rect_size = properties['width'], properties['height']
+
+        self.rect = pygame.Rect(
+            self.pos,
+            self.rect_size
+        )
+        self.align = properties['align']
         self.properties = properties
 
+    def surface_blitting_pos(self):
+        pos = [*self.pos]
+
+        width = self.rect.width
+        height = self.rect.height
+
+        if self.align['x'] == 'center':
+            pos[0] -= width / 2
+        elif self.align['x'] == 'right':
+            pos[0] -= width
+
+        if self.align['y'] == 'center':
+            pos[1] -= height / 2
+        elif self.align['y'] == 'bottom':
+            pos[1] -= height
+
+        return pos
+
     def update_image(self, surface):
-        self.surface = surface
+        width = surface.get_width()
+        height = surface.get_height()
+        scale = min(self.properties['width'] / width, self.properties['height'] / height)
+        self.surface = pygame.transform.scale(surface, (width * scale, height * scale))
 
     def draw(self, screen):
         if 'surface' in self.__dict__:
-            screen.blit(self.surface, self.pos)
+            screen.blit(self.surface, self.surface_blitting_pos())
+            pygame.draw.rect(screen, 'white', (self.surface_blitting_pos(), self.rect_size))

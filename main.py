@@ -6,6 +6,7 @@ from DOM.Layout import layout_manager
 from DOM.DOMEventElement import DOMEventElement
 from Interface import Grid
 
+
 from sys import exit
 import pygame
 
@@ -27,10 +28,10 @@ root.onclick('toggle-grid', grid.toggle_grid)
 xml = XMLParser('spritesheetloaderlayout.xml')  # popup xml file
 popup = xml.read_dom()
 popup.onclick('close-popup', lambda _: layout_manager.pop())
+popup.getElementByID('current-loading-tile').elem.update_image(pygame.image.load('testspritesheet.png'))
 
-tmp = main_font.render('IMAGE', False, main_font_color)
 
-popup.getElementByID('current-loading-tile').elem.update_image(tmp)
+# popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 root.onclick('open-test-screen-button', lambda _: layout_manager.push(popup))
 
