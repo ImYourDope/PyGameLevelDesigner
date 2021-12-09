@@ -49,6 +49,8 @@ class Input(ElementInterface):
             pygame.draw.line(self.render_surface, 'black', (self.render_rect.width + 4, 2),
                              (self.render_rect.width + 4, self.render_rect.height - 2), 3)
 
+
+
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)
 

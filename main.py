@@ -32,9 +32,13 @@ root.id = 'root'
 grid = Grid({})
 
 
-spritesheets = load_spritesheet('TX_Tileset_Grass.png')
-print(spritesheets)
-spritesheetloader.getElementByID('current-loading-tile').elem.update_image(spritesheets[0][1])
+spritesheets_blocks = load_spritesheet('TX_Tileset_Grass.png')
+spritesheets = []
+for spritesheet_block in spritesheets_blocks:
+    spritesheets.extend(spritesheet_block)
+
+eventManager.spritesheets = spritesheets
+spritesheetloader.getElementByID('current-loading-tile').elem.update_image(spritesheets[0])
 
 
 

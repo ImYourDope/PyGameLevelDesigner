@@ -74,3 +74,6 @@ class Button(ElementInterface):
             screen.blit(self.surface, self.surface_blitting_pos())
 
         pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.rect_size), 2)
+
+    def setText(self, text):
+        self.surface = main_font.render(text, False, main_font_color)
