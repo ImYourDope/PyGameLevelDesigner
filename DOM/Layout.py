@@ -2,7 +2,7 @@ import pygame
 
 from EventManager import Singleton
 from DOM.DOMEventElement import DOMEventElement
-from settings import ui_main_color
+from settings import ui_main_color, popup_screen_border_color
 
 
 class Layout:
@@ -38,6 +38,13 @@ class Layout:
 
     def onchange(self, id, callback):
         self.on('change', id, callback)
+
+
+    def getElementByID(self, id):
+        if id in self.dom:
+            return self.dom[id]
+
+        raise Exception("Unknown id")
 
     def infocus(self, id):
         if id not in self.dom:
@@ -107,6 +114,8 @@ class Layout:
         if 'id' not in self.__dict__ or self.id != 'root':
             surface = pygame.Surface(self.rect())
             surface.fill(ui_main_color)
+            rect = surface.get_rect()
+            pygame.draw.rect(surface, popup_screen_border_color, rect, 5)
             # pygame.draw.rect(screen, ui_main_color, self.rect())
             for elem in self.dom.values():
                 elem.draw(surface)

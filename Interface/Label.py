@@ -9,6 +9,10 @@ class Label(ElementInterface):
         'y': 0,
         'height': 30,
         'text': '',
+        'align': {
+            'x': 'left',
+            'y': 'top'
+        }
     }
 
     def __init__(self, properties):
@@ -19,8 +23,28 @@ class Label(ElementInterface):
         self.text = properties['text']
         self.update_surface()
 
+        self.align = properties['align']
+
+    def blitting_pos(self):
+        pos = [self.properties['x'], self.properties['y']]
+
+        width = self.surface.get_width()
+        height = self.surface.get_height()
+
+        if self.align['x'] == 'center':
+            pos[0] -= width / 2
+        elif self.align['x'] == 'right':
+            pos[0] -= width
+
+        if self.align['y'] == 'center':
+            pos[1] += height / 2
+        elif self.align['y'] == 'bottom':
+            pos[1] += height
+
+        return pos
+
     def draw(self, screen):
-        screen.blit(self.surface, (self.properties['x'], self.properties['y']))
+        screen.blit(self.surface, self.blitting_pos())
 
     def update_surface(self):
         self.surface = main_font.render(self.text, False, main_font_color)
@@ -32,7 +56,7 @@ class Label(ElementInterface):
         # self.render_surface.blit(self.render, (0, 0))
 
     def mouse_collision(self, cors):
-        return False # self.rect.collidepoint(cors)
+        return False  # self.rect.collidepoint(cors)
 
     def setText(self, text):
         self.text = text

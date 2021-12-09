@@ -32,6 +32,9 @@ class XMLParser:
             elif elem.tag == 'Label':
                 props = XMLParser.set_default_parameters(props, Label.DEFAULT)
                 dom.append(Label(props))
+            elif elem.tag == 'Image':
+                props = XMLParser.set_default_parameters(props, Image.DEFAULT)
+                dom.append(Image(props))
             else:
                 pass
                 # raise Exception('Incorrect tag')
@@ -43,8 +46,9 @@ class XMLParser:
         for key in 'x', 'y', 'width', 'height':
             if key in props:
                 props[key] = int(props[key])
+
         for key in props.keys():
-            if type(props[key]) is dict:
+            if type(props[key]) is dict and key != 'align':
                 XMLParser.convert_props(props[key])
 
         return props
@@ -54,6 +58,10 @@ class XMLParser:
         hover = elem.find('Hover')
         if hover is not None:
             elem.attrib['hover'] = hover.attrib
+
+        align = elem.find('Align')
+        if align is not None:
+            elem.attrib['align'] = align.attrib
 
         return elem.attrib
 
