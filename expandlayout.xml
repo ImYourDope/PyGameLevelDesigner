@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="800"
+        height="350"
+        x="300"
+        y="175">
+
+    <Label height="40"
+           x="400"
+           y="10"
+           text="EXPAND CANVAS"/>
+
+    <Label height="40"
+           x="200"
+           y="70"
+           text="Top:"/>
+
+    <Label height="40"
+           x="600"
+           y="70"
+           text="Bottom:"/>
+
+    <Label height="40"
+           x="200"
+           y="180"
+           text="Left:"/>
+
+    <Label height="40"
+           x="600"
+           y="180"
+           text="Right:"/>
+
+    <Input id="top-expand"
+           x="100"
+           y="120"
+           width="200"
+           height="40"/>
+
+    <Input id="left-expand"
+           x="100"
+           y="230"
+           width="200"
+           height="40"/>
+
+    <Input id="bottom-expand"
+           x="500"
+           y="120"
+           width="200"
+           height="40"/>
+
+    <Input id="right-expand"
+           x="500"
+           y="230"
+           width="200"
+           height="40"/>
+
+    <Button id="close-popup"
+            x="100"
+            y="290"
+            width="200"
+            height="40"/>
+
+    <Button id="ok-expand"
+            x="500"
+            y="290"
+            width="200"
+            height="40"/>
+
+</Layout>
