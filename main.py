@@ -24,9 +24,13 @@ grid = Grid({})
 
 root.onclick('toggle-grid', grid.toggle_grid)
 
-xml = XMLParser('tileloaderlayout.xml')
+xml = XMLParser('spritesheetloaderlayout.xml')
 popup = xml.read_dom()
 popup.onclick('close-popup', lambda _: layout_manager.pop())
+
+tmp = main_font.render('IMAGE', False, main_font_color)
+
+popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 root.onclick('open-test-screen-button', lambda _: layout_manager.push(popup))
 

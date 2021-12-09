@@ -39,6 +39,13 @@ class Layout:
     def onchange(self, id, callback):
         self.on('change', id, callback)
 
+
+    def getElementByID(self, id):
+        if id in self.dom:
+            return self.dom[id]
+
+        raise Exception("Unknown id")
+
     def infocus(self, id):
         if id not in self.dom:
             return False

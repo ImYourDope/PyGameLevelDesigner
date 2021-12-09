@@ -32,6 +32,9 @@ class XMLParser:
             elif elem.tag == 'Label':
                 props = XMLParser.set_default_parameters(props, Label.DEFAULT)
                 dom.append(Label(props))
+            elif elem.tag == 'Image':
+                props = XMLParser.set_default_parameters(props, Image.DEFAULT)
+                dom.append(Image(props))
             else:
                 pass
                 # raise Exception('Incorrect tag')
