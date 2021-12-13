@@ -45,10 +45,6 @@ spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(sp
 root.onclick('toggle-grid', grid.toggle_grid)
 root.onclick('open-test-screen-button', lambda _: layout_manager.push(spritesheetloader))
 
-
-
-
-
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 # root.onclick('open-test-screen-button', lambda _: layout_manager.push())
@@ -58,9 +54,7 @@ create_scrolling_cursors()
 layout_manager.push(root)
 
 while True:
-
     # DRAW SECTION
-
     draw_ui_background(screen)
     draw_canvas(screen)
     if eventManager.grid_on:
@@ -76,7 +70,6 @@ while True:
     for event in pygame.event.get():
         # if eventManager.main_screen_on:
         #     scroll_canvas(event)
-        print(event)
         if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
         if event.type == pygame.MOUSEBUTTONDOWN:
