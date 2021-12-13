@@ -38,8 +38,7 @@ class Layout:
     def onchange(self, id, callback):
         self.on('change', id, callback)
 
-
-    def getElementByID(self, id):
+    def get_element_by_id(self, id):
         if id in self.dom:
             return self.dom[id]
 
@@ -95,6 +94,9 @@ class Layout:
                     elem.process_event('hover', event)
                 else:
                     elem.props['hover'] = False
+        elif event.type == pygame.MOUSEWHEEL:
+            if self.data['object in focus'] is not None:
+                self.dom[self.data['object in focus']].process_event('scroll', event)
 
     def disable(self):
         self.change_focus(None)

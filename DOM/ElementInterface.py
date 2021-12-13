@@ -15,6 +15,9 @@ class ElementInterface:
     def oninput(self, event):
         """Processes input"""
 
+    def onscroll(self, event):
+        """Processes scroll event"""
+
     def onfocus(self, event):
         """Processes hover event"""
 

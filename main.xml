@@ -52,4 +52,11 @@
            x="10"
            y="150"
            text="HELLO"/>
+    <ScrollList
+            x="0"
+            y="300"
+            width="400"
+            height="400"
+    />
+
 </Layout>
