@@ -1,6 +1,7 @@
-from settings import *
+import pygame
 
-from DOM.ElementInterface import ElementInterface
+from DOM import ElementInterface, layout_manager
+from settings import main_font_name, main_font_color
 
 
 class Label(ElementInterface):
@@ -9,6 +10,11 @@ class Label(ElementInterface):
         'y': 0,
         'height': 30,
         'text': '',
+        'hover': {
+            'position': 'relative',
+            'x': 0,
+            'y': 0
+        },
         'align': {
             'x': 'left',
             'y': 'top'
@@ -18,16 +24,22 @@ class Label(ElementInterface):
     def __init__(self, properties):
         self.id = properties['id']
 
-        self.properties = properties
-
+        self.pos = (
+            properties['x'],
+            properties['y']
+        )
+        self.hover = properties['hover']
+        self.font_size = properties['height']
         self.text = properties['text']
-        self.update_surface()
-
         self.align = properties['align']
 
-    def blitting_pos(self):
-        pos = [self.properties['x'], self.properties['y']]
+        self.font_renderer = pygame.font.Font(main_font_name, self.font_size)
 
+        self.update_surface()
+        self.set_blitting_pos()
+
+    def centering(self, pos):
+        pos = [*pos]
         width = self.surface.get_width()
         height = self.surface.get_height()
 
@@ -43,14 +55,32 @@ class Label(ElementInterface):
 
         return pos
 
+    def set_blitting_pos(self):
+        self.blitting_pos = self.centering(self.pos)
+
+        if self.hover['position'] == 'absolute':
+            self.hovered_blitting_pos = self.centering([self.hover['x'], self.hover['y']])
+        elif self.hover['position'] == 'relative':
+            pos = self.centering(self.pos)
+
+            pos[0] += self.hover['x']
+            pos[1] += self.hover['y']
+
+            self.hovered_blitting_pos = pos
+        else:
+            raise Exception('Incorrect "position" attribute value')
+
     def draw(self, screen):
-        screen.blit(self.surface, self.blitting_pos())
+        if layout_manager.ishovered(self.id):
+            screen.blit(self.surface, self.hovered_blitting_pos)
+        else:
+            screen.blit(self.surface, self.blitting_pos)
 
     def update_surface(self):
-        self.surface = main_font.render(self.text, False, main_font_color)
+        self.surface = self.font_renderer.render(self.text, False, main_font_color)
 
-    def mouse_collision(self, cors):
-        return False  # self.rect.collidepoint(cors)
+    def mouse_collision(self, pos):
+        return self.surface.get_rect(topleft=self.blitting_pos).collidepoint(pos)
 
     def set_text(self, text):
         self.text = text

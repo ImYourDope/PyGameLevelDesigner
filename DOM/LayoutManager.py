@@ -11,32 +11,30 @@ class LayoutManager(Singleton):
         self.layouts.append(layout)
         layout.init({})
 
-
     def pop(self):
         layout = self.layouts.pop()
         layout.delete()
-
 
     def last(self):
         if len(self.layouts) > 0:
             return self.layouts[len(self.layouts) - 1]
         return None
 
-    def cors_to_relative_pos(self, cors):
-        new_cors = [*cors]
+    def absolute_pos_to_relative_pos(self, pos):
+        new_pos = [*pos]
         for layout in self.layouts:
-            new_cors[0] -= layout.properties['x']
-            new_cors[1] -= layout.properties['y']
-        return new_cors
+            new_pos[0] -= layout.properties['x']
+            new_pos[1] -= layout.properties['y']
+        return new_pos
 
     def process_event(self, event):
         self.last().process_event(event)
 
-    def infocus(self, id):
-        return self.last().infocus(id)
+    def infocus(self, element_id):
+        return self.last().infocus(element_id)
 
-    def ishovered(self, id):
-        return self.last().ishovered(id)
+    def ishovered(self, element_id):
+        return self.last().ishovered(element_id)
 
     def draw(self, screen):
         for layout in self.layouts:

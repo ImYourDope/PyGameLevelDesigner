@@ -45,7 +45,7 @@ class Button(ElementInterface):
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors) or self.shift_rect.collidepoint(cors)
 
-    def surface_blitting_pos(self):
+    def blitting_pos(self):
         pos = [*self.pos]
 
         button_width = self.rect.width
@@ -68,9 +68,9 @@ class Button(ElementInterface):
 
     def draw(self, screen):
         if not layout_manager.ishovered(self.id):
-            screen.blit(self.surface, self.surface_blitting_pos())
+            screen.blit(self.surface, self.blitting_pos())
         else:
-            screen.blit(self.surface, self.surface_blitting_pos())
+            screen.blit(self.surface, self.blitting_pos())
 
         pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.rect_size), 2)
 

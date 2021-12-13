@@ -12,6 +12,7 @@ event_manager.popup_screen_on = False
 # FONT SETTINGS
 pygame.font.init()
 main_font_size = 30
+main_font_name = 'DisposableDroidBB_bld.ttf'
 main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
 
