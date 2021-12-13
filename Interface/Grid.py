@@ -23,4 +23,4 @@ class Grid(ElementInterface):
         return False
 
     def toggle_grid(self, e):
-        eventManager.grid_on = not eventManager.grid_on
+        event_manager.grid_on = not event_manager.grid_on

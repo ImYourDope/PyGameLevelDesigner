@@ -22,18 +22,17 @@ class Layout:
         }
         self.state = {}
 
-        self.functions = {
-            'init': lambda _: print('init'),
-            'delete': lambda: print('delete')
-        }
+        self.set('init', lambda _: print('init'))
+        self.set('delete', lambda: print('delete'))
+
         for elem in dom:
             self.dom[elem.id] = DOMEventElement(elem)
 
     def init(self, properties):
-        self.functions['init'](properties)
+        self.get('init')(properties)
 
     def delete(self):
-        self.functions['delete']()
+        self.get('delete')()
 
     def on(self, action, id, callback):
         if id not in self.dom:
@@ -127,7 +126,7 @@ class Layout:
                 self.properties['y'])
 
     def set(self, var, value):
-        self.state[var] = var
+        self.state[var] = value
 
     def get(self, var):
         return self.state[var]

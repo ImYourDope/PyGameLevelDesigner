@@ -7,12 +7,14 @@ class LayoutManager(Singleton):
     def push(self, layout):
         if self.last() is not None:
             self.last().disable()
-        layout.init({})
         self.layouts.append(layout)
+        layout.init({})
+
 
     def pop(self):
         layout = self.layouts.pop()
         layout.delete()
+
 
     def last(self):
         if len(self.layouts) > 0:

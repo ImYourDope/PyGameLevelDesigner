@@ -1,6 +1,6 @@
 from userinterface import *
 from canvas import *
-from EventManager import eventManager
+from EventManager import event_manager
 from Interface import Grid
 from XMLparser import XMLParser
 from DOM import layout_manager
@@ -30,13 +30,12 @@ root = xml.read_dom()
 root.id = 'root'
 grid = Grid({})
 
-spritesheets_blocks = load_spritesheet('testspritesheet.png')
-spritesheets = []
-for spritesheet_block in spritesheets_blocks:
-    spritesheets.extend(spritesheet_block)
+# spritesheets_blocks = load_spritesheet('testspritesheet.png')
+# spritesheets = []
+# for spritesheet_block in spritesheets_blocks:
+#     spritesheets.extend(spritesheet_block)
 
-eventManager.spritesheets = spritesheets
-spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(spritesheets[0])
+event_manager.spritesheets = []
 
 root.onclick('toggle-grid', grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
@@ -44,14 +43,10 @@ root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas)
 
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
 
-def gen_tile():
-    surface = pygame.Surface((64, 64))
-    surface.fill('red')
-    return surface
-
-
-root.get_element_by_id('tiles').elem.list = spritesheets
+root.get_element_by_id('tiles').elem.list = event_manager.spritesheets
 root.get_element_by_id('tiles').elem.update_surface()
+
+event_manager.DOM_tile_list = root.get_element_by_id('tiles')
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 # root.onclick('open-test-screen-button', lambda _: layout_manager.push())
@@ -64,18 +59,18 @@ while True:
     # DRAW SECTION
     draw_ui_background(screen)
     draw_canvas(screen)
-    if eventManager.grid_on:
+    if event_manager.grid_on:
         grid.draw(screen)
     draw_ui(screen)
 
     layout_manager.draw(screen)
 
-    if eventManager.main_screen_on and layout_manager.last().id == "root":
+    if event_manager.main_screen_on and layout_manager.last().id == "root":
         draw_scrolling_cursor(screen)
 
     # EVENT SECTION
     for event in pygame.event.get():
-        if eventManager.main_screen_on and layout_manager.last().id == "root":
+        if event_manager.main_screen_on and layout_manager.last().id == "root":
             scroll_canvas(event)
         if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
