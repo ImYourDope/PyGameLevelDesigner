@@ -30,7 +30,7 @@ root = xml.read_dom()
 root.id = 'root'
 grid = Grid({})
 
-spritesheets_blocks = load_spritesheet('TX_Tileset_Grass.png')
+spritesheets_blocks = load_spritesheet('testspritesheet.png')
 spritesheets = []
 for spritesheet_block in spritesheets_blocks:
     spritesheets.extend(spritesheet_block)
@@ -42,6 +42,7 @@ root.onclick('toggle-grid', grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
 root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 
+root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
 
 def gen_tile():
     surface = pygame.Surface((64, 64))
