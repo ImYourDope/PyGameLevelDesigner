@@ -12,6 +12,7 @@ layout = xml.read_dom()
 layout.onclick('close-popup', lambda _: layout_manager.pop())
 
 
+
 def init(props):
     top = tkinter.Tk()
     top.withdraw()

@@ -22,6 +22,8 @@ default_sprite_starting_color = (255, 0, 255)
 default_sprite_ending_color = (0, 255, 255)
 spritesheet_colorkey_color = (255, 255, 255)
 
+tile_size = 64
+
 # MAIN SCREEN SETTINGS
 screen_width = 1400
 screen_height = 700
@@ -39,7 +41,6 @@ ui_border_thickness = 3
 
 # CANVAS SETTINGS
 canvas_default_color = (30, 100, 150)
-canvas_pos = [left_margin, top_margin]
 arrow_cursor_size = 30
 
 # EDITING SCREEN SETTINGS

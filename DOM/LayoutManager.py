@@ -6,6 +6,7 @@ class LayoutManager(Singleton):
 
     def push(self, layout):
         if self.last() is not None:
+            print(self.last())
             self.last().disable()
         self.layouts.append(layout)
         layout.init({})

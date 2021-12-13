@@ -43,3 +43,6 @@ class EventManager(Singleton):
 
 
 event_manager = EventManager()
+event_manager.project_created = False
+event_manager.project_name = ''
+
