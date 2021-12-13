@@ -10,8 +10,10 @@ import pygame
 
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
+
 init_layouts()
 from layouts import *
+
 # END OF WARNING
 
 
@@ -39,6 +41,16 @@ spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(sp
 root.onclick('toggle-grid', grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
 root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
+
+
+def gen_tile():
+    surface = pygame.Surface((64, 64))
+    surface.fill('red')
+    return surface
+
+
+root.get_element_by_id('tiles').elem.list = spritesheets
+root.get_element_by_id('tiles').elem.update_surface()
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 # root.onclick('open-test-screen-button', lambda _: layout_manager.push())
