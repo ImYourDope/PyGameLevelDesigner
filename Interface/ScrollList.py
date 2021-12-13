@@ -43,6 +43,7 @@ class ScrollList(ElementInterface):
         self.active = 0
         self.scroll_pos = 0
         self.surface = pygame.Surface((properties['width'], 10 ** 4))
+        self.surface.set_colorkey('black')
         self.update_surface()
         self.align = properties['align']
 
@@ -71,6 +72,7 @@ class ScrollList(ElementInterface):
     def draw(self, screen):
         sub_surface = self.surface.subsurface((0, self.scroll_pos), self.dimentions)
         screen.blit(sub_surface, self.pos)
+        pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.dimentions), 2)
 
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)

@@ -4,7 +4,6 @@ from random import randint
 from DOM import DOMEventElement, layout_manager
 from settings import ui_main_color, popup_screen_border_color
 
-
 class Layout:
     DEFAULT = {
         'x': 0,
@@ -20,6 +19,7 @@ class Layout:
         self.data = {
             'object in focus': None
         }
+        self.state = {}
         for elem in dom:
             self.dom[elem.id] = DOMEventElement(elem)
 
@@ -97,8 +97,9 @@ class Layout:
                 else:
                     elem.props['hover'] = False
         elif event.type == pygame.MOUSEWHEEL:
-            if self.data['object in focus'] is not None:
-                self.dom[self.data['object in focus']].process_event('scroll', event)
+            for elem in self.dom.values():
+                if elem.props['hover']:
+                    elem.process_event('scroll', event)
 
     def disable(self):
         self.change_focus(None)
@@ -112,6 +113,15 @@ class Layout:
     def cors(self):
         return (self.properties['x'],
                 self.properties['y'])
+
+    def set(self, var, value):
+        self.state[var] = var
+
+    def get(self, var):
+        return self.state[var]
+
+    def reset(self):
+        self.state = {}
 
     def draw(self, screen):
         if 'id' not in self.__dict__ or self.id != 'root':
