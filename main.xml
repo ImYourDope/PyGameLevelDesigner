@@ -2,20 +2,18 @@
 <Layout width="1400"
         height="700">
 
-    <TextButton id="open-test-screen-button"
+    <TextButton id="create-project-button"
             x="10"
             y="5"
-            text="OPEN TEST SCREEN">
-
+            text="CREATE PROJECT">
         <Hover position="relative"
-               x="10"
-        />
+               x="10"/>
     </TextButton>
+
     <TextButton id="load-project-button"
             x="10"
             y="33"
             text="LOAD PROJECT">
-
         <Hover position="relative"
                x="10"/>
     </TextButton>
@@ -28,35 +26,65 @@
                x="10"/>
     </TextButton>
 
-    <TextButton id="create-layer-button"
+    <TextButton id="layer-menu-button"
             x="10"
             y="89"
-            text="CREATE LAYER">
-        <Hover position="relative"
-               x="10"/>
-    </TextButton>
-
-    <TextButton id="create-level-button"
-            x="10"
-            y="117"
-            text="CREATE LEVEL">
+            text="LAYER MENU">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="toggle-grid"
-            x="300"
+            x="250"
             y="5"
-            text="GRID"/>
-    <Input id="input"
-           x="10"
-           y="150"
-           text="HELLO"/>
+            text="GRID">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <TextButton id="collision-button"
+            x="250"
+            y="33"
+            text="COLLISIONS">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <TextButton id="collision-button"
+            x="250"
+            y="33"
+            text="COLLISIONS">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <TextButton id="expand-canvas-button"
+            x="250"
+            y="60"
+            text="EXPAND">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <TextButton id="test-run-button"
+            x="250"
+            y="87"
+            text="TEST RUN">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <Input id="tile-library-search-line"
+           x="50"
+           y="130"
+           width="300"
+           height="40"/>
+
     <ScrollList
             x="0"
-            y="300"
+            y="180"
             width="400"
-            height="400"
+            height="520"
     />
 
 </Layout>

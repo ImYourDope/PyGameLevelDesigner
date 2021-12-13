@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 
 from DOM import DOMEventElement, layout_manager
 from settings import ui_main_color, popup_screen_border_color
@@ -13,6 +14,7 @@ class Layout:
     }
 
     def __init__(self, dom, properties):
+        self.id = properties['id'] if 'id' in properties else str(randint(0, 10**10))
         self.properties = properties
         self.dom = dict()
         self.data = {
