@@ -3,83 +3,83 @@
         height="700">
 
     <TextButton id="create-project-button"
-            x="10"
-            y="5"
-            text="CREATE PROJECT">
+                x="10"
+                y="5"
+                text="CREATE PROJECT">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="load-project-button"
-            x="10"
-            y="33"
-            text="LOAD PROJECT">
+                x="10"
+                y="33"
+                text="LOAD PROJECT">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="save-project-button"
-            x="10"
-            y="60"
-            text="SAVE PROJECT">
+                x="10"
+                y="60"
+                text="SAVE PROJECT">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="load-tiles-button"
-            x="10"
-            y="87"
-            text="LOAD TILE">
+                x="10"
+                y="87"
+                text="LOAD TILE">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="load-spritesheet-button"
-            x="10"
-            y="114"
-            text="LOAD SPRITESHEET">
+                x="10"
+                y="114"
+                text="LOAD SPRITESHEET">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="toggle-grid"
-            x="250"
-            y="5"
-            text="GRID">
-             <Hover position="relative"
+                x="250"
+                y="5"
+                text="GRID">
+        <Hover position="relative"
                x="10"/>
     </TextButton>
 
 
     <TextButton id="collision-button"
-            x="250"
-            y="33"
-            text="COLLISIONS">
-             <Hover position="relative"
+                x="250"
+                y="33"
+                text="COLLISIONS">
+        <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="expand-canvas-button"
-            x="250"
-            y="60"
-            text="EXPAND">
-             <Hover position="relative"
+                x="250"
+                y="60"
+                text="EXPAND">
+        <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="layer-menu-button"
-            x="250"
-            y="114"
-            text="LAYER MENU">
-             <Hover position="relative"
+                x="250"
+                y="114"
+                text="LAYER MENU">
+        <Hover position="relative"
                x="10"/>
     </TextButton>
 
     <TextButton id="test-run-button"
-            x="250"
-            y="87"
-            text="TEST RUN">
-             <Hover position="relative"
+                x="250"
+                y="87"
+                text="TEST RUN">
+        <Hover position="relative"
                x="10"/>
     </TextButton>
 
@@ -90,6 +90,7 @@
            height="40"/>
 
     <ScrollList
+            id="tiles"
             x="0"
             y="215"
             width="412"

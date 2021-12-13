@@ -4,6 +4,7 @@ from random import randint
 from DOM import DOMEventElement, layout_manager
 from settings import ui_main_color, popup_screen_border_color
 
+
 class Layout:
     DEFAULT = {
         'x': 0,
@@ -13,15 +14,25 @@ class Layout:
     }
 
     def __init__(self, dom, properties):
-        self.id = properties['id'] if 'id' in properties else str(randint(0, 10**10))
+        self.id = properties['id'] if 'id' in properties else str(randint(0, 10 ** 10))
         self.properties = properties
         self.dom = dict()
         self.data = {
             'object in focus': None
         }
         self.state = {}
+
+        self.set('init', lambda _: print('init'))
+        self.set('delete', lambda: print('delete'))
+
         for elem in dom:
             self.dom[elem.id] = DOMEventElement(elem)
+
+    def init(self, properties):
+        self.get('init')(properties)
+
+    def delete(self):
+        self.get('delete')()
 
     def on(self, action, id, callback):
         if id not in self.dom:
@@ -115,7 +126,7 @@ class Layout:
                 self.properties['y'])
 
     def set(self, var, value):
-        self.state[var] = var
+        self.state[var] = value
 
     def get(self, var):
         return self.state[var]
@@ -136,6 +147,3 @@ class Layout:
         else:
             for elem in self.dom.values():
                 elem.draw(screen)
-
-
-

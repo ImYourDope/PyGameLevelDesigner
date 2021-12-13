@@ -5,6 +5,13 @@ from settings import *
 from DOM.ElementInterface import ElementInterface
 
 
+def scale(surface, width, height):
+    surface_width = surface.get_width()
+    surface_height = surface.get_height()
+    surface_scale = min(width / surface_width, height / surface_height)
+    return pygame.transform.scale(surface, (surface_width * surface_scale, surface_height * surface_scale))
+
+
 class ScrollList(ElementInterface):
     DEFAULT = {
         'x': 0,
@@ -40,39 +47,42 @@ class ScrollList(ElementInterface):
             self.pos,
             self.dimentions
         )
-        self.active = 0
+
+        self.tiles_per_row = 4
+        self.width = 64
+        self.height = 64
+        self.padding_x = (self.rect.width - self.width * self.tiles_per_row) // (self.tiles_per_row + 1)
+        self.padding_y = 20
+        self.active = None
         self.scroll_pos = 0
         self.surface = pygame.Surface((properties['width'], 10 ** 4))
-        self.surface.set_colorkey('black')
+        self.surface.set_colorkey('white')
         self.update_surface()
         self.align = properties['align']
 
-    def tile_rect(self, i):
-        tiles_per_row = 3
-        width = 64
-        height = 64
-        padding_x = (self.rect.width - width * tiles_per_row) // (tiles_per_row + 1)
-        padding_y = 20
+    def tile_pos(self, i):
+        return (
+            i % self.tiles_per_row * (self.width + self.padding_x) + self.padding_x,
+            i // self.tiles_per_row * (self.height + self.padding_y) + self.padding_y,
+        )
 
-        return pygame.Rect((
-            i % tiles_per_row * (width + padding_x) + padding_x,
-            i // tiles_per_row * (height + padding_y) + padding_y,
-            width,
-            height
-        ))
+    def tile_rect(self, i):
+        return pygame.Rect(self.tile_pos(i), (self.width, self.height))
 
     def update_surface(self):
-        for i in range(100):
-            pygame.draw.rect(self.surface, 'green' if self.active == i else 'blue', self.tile_rect(i))
+        for i in range(len(self.list)):
+            self.list[i] = scale(self.list[i], self.width, self.height)
 
-    # def render_list(self, screen):
-    #     for i in range(len(self.list)):
-    #         screen.blit(self.list[i], ((i % 3) * 50, (i // 3) * 50))
+        self.surface.fill('white')
+        for i in range(len(self.list)):
+            self.surface.blit(self.list[i], self.tile_pos(i))
+            if self.active == i:
+                pygame.draw.rect(self.surface, 'green', self.tile_rect(i), 2)
 
     def draw(self, screen):
         sub_surface = self.surface.subsurface((0, self.scroll_pos), self.dimentions)
         screen.blit(sub_surface, self.pos)
-        pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.dimentions), 2)
+        pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.dimentions), ui_border_thickness)
 
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)
@@ -81,9 +91,12 @@ class ScrollList(ElementInterface):
         pos = [*event.pos]
         pos[0] -= self.pos[0]
         pos[1] -= self.pos[1] - self.scroll_pos
-        for i in range(1000):
+        for i in range(len(self.list)):
             if self.tile_rect(i).collidepoint(pos):
                 self.active = i
+                break
+        else:
+            self.active = None
         self.update_surface()
 
     def onscroll(self, event):

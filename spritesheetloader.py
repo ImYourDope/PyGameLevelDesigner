@@ -34,4 +34,8 @@ def load_spritesheet(spritesheet_file, sprite_row_color=default_sprite_row_color
                 sprite_image.set_colorkey(spritesheet_colorkey_color)
                 row_data.append(sprite_image)
         spritesheet_data.append(row_data)
-    return spritesheet_data
+
+    spritesheets = []
+    for row in spritesheet_data:
+        spritesheets.extend(row)
+    return spritesheets

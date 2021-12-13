@@ -9,9 +9,13 @@ class LayoutManager(Singleton):
             print(self.last())
             self.last().disable()
         self.layouts.append(layout)
+        layout.init({})
+
 
     def pop(self):
-        self.layouts.pop()
+        layout = self.layouts.pop()
+        layout.delete()
+
 
     def last(self):
         if len(self.layouts) > 0:
