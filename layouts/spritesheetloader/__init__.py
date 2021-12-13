@@ -18,7 +18,7 @@ def init(props):
     file_name = tkinter.filedialog.askopenfilename(parent=top)
     top.destroy()
     print(file_name)
-    if file_name == ():
+    if not file_name:
         layout_manager.pop()
     else:
         tiles = load_spritesheet(file_name)
