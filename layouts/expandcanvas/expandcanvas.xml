@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Layout width="600"
         height="350"
-        x="400"
+        x="600"
         y="175">
 
     <Label height="40"

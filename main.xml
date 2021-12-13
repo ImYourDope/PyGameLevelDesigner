@@ -20,16 +20,24 @@
 
     <TextButton id="save-project-button"
             x="10"
-            y="61"
+            y="60"
             text="SAVE PROJECT">
         <Hover position="relative"
                x="10"/>
     </TextButton>
 
-    <TextButton id="layer-menu-button"
+    <TextButton id="load-tiles-button"
             x="10"
-            y="89"
-            text="LAYER MENU">
+            y="87"
+            text="LOAD TILE">
+        <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
+    <TextButton id="load-spritesheet-button"
+            x="10"
+            y="114"
+            text="LOAD SPRITESHEET">
         <Hover position="relative"
                x="10"/>
     </TextButton>
@@ -42,13 +50,6 @@
                x="10"/>
     </TextButton>
 
-    <TextButton id="collision-button"
-            x="250"
-            y="33"
-            text="COLLISIONS">
-             <Hover position="relative"
-               x="10"/>
-    </TextButton>
 
     <TextButton id="collision-button"
             x="250"
@@ -66,6 +67,14 @@
                x="10"/>
     </TextButton>
 
+    <TextButton id="layer-menu-button"
+            x="250"
+            y="114"
+            text="LAYER MENU">
+             <Hover position="relative"
+               x="10"/>
+    </TextButton>
+
     <TextButton id="test-run-button"
             x="250"
             y="87"
@@ -75,16 +84,16 @@
     </TextButton>
 
     <Input id="tile-library-search-line"
-           x="50"
-           y="130"
+           x="56"
+           y="160"
            width="300"
            height="40"/>
 
     <ScrollList
             x="0"
-            y="180"
-            width="400"
-            height="520"
+            y="215"
+            width="412"
+            height="490"
     />
 
 </Layout>
