@@ -12,7 +12,6 @@ layout = xml.read_dom()
 layout.onclick('close-popup', lambda _: layout_manager.pop())
 
 
-
 def init(props):
     top = tkinter.Tk()
     top.withdraw()
@@ -32,12 +31,12 @@ def init(props):
         layout.get_element_by_id('spritesheet-tile-counter').elem.set_text('1/{0}'.format(len(tiles)))
 
 
-def next_tile(_):
+def next_elem(_, load_tile):
     counter = layout.get('counter')
     tiles = layout.get('tiles')
-
-    event_manager.DOM_tile_list.elem.list.append(tiles[counter])
-    event_manager.DOM_tile_list.elem.update_surface()
+    if load_tile:
+        event_manager.DOM_tile_list.elem.list.append(tiles[counter])
+        event_manager.DOM_tile_list.elem.update_surface()
 
     counter += 1
 
@@ -55,6 +54,6 @@ def next_tile(_):
 
 
 
-
 layout.set('init', init)
-layout.onclick('next-tile', next_tile)
+layout.onclick('next-tile', lambda e: next_elem(e, load_tile=True))
+layout.onclick('skip-tile', lambda e: next_elem(e, load_tile=False))
