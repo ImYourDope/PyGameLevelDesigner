@@ -26,6 +26,9 @@ class XMLParser:
             if elem.tag == 'Button':
                 props = XMLParser.set_default_parameters(props, Button.DEFAULT)
                 dom.append(Button(props))
+            elif elem.tag == 'TextButton':
+                props = XMLParser.set_default_parameters(props, TextButton.DEFAULT)
+                dom.append(TextButton(props))
             elif elem.tag == 'Input':
                 props = XMLParser.set_default_parameters(props, Input.DEFAULT)
                 dom.append(Input(props))
