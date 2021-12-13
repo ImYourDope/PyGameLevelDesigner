@@ -42,6 +42,7 @@ root.onclick('create-project-button', lambda _: layout_manager.push(projectcreat
 root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
+root.onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader))
 
 root.get_element_by_id('tiles').elem.list = event_manager.spritesheets
 root.get_element_by_id('tiles').elem.update_surface()

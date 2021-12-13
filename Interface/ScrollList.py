@@ -56,7 +56,7 @@ class ScrollList(ElementInterface):
         self.active = None
         self.scroll_pos = 0
         self.surface = pygame.Surface((properties['width'], 10 ** 4))
-        self.surface.set_colorkey('black')
+        self.surface.set_colorkey('white')
         self.update_surface()
         self.align = properties['align']
 
@@ -73,7 +73,7 @@ class ScrollList(ElementInterface):
         for i in range(len(self.list)):
             self.list[i] = scale(self.list[i], self.width, self.height)
 
-        self.surface.fill('black')
+        self.surface.fill('white')
         for i in range(len(self.list)):
             self.surface.blit(self.list[i], self.tile_pos(i))
             if self.active == i:
