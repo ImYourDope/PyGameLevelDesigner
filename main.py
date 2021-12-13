@@ -4,6 +4,9 @@ from EventManager import eventManager
 from Interface import Grid
 from XMLparser import XMLParser
 from DOM import layout_manager
+from spritesheetloader import load_spritesheet
+from sys import exit
+import pygame
 
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
@@ -11,12 +14,6 @@ init_layouts()
 from layouts import *
 # END OF WARNING
 
-
-from spritesheetloader import load_spritesheet
-
-
-from sys import exit
-import pygame
 
 pygame.init()
 
@@ -31,7 +28,6 @@ root = xml.read_dom()
 root.id = 'root'
 grid = Grid({})
 
-
 spritesheets_blocks = load_spritesheet('TX_Tileset_Grass.png')
 spritesheets = []
 for spritesheet_block in spritesheets_blocks:
@@ -40,11 +36,9 @@ for spritesheet_block in spritesheets_blocks:
 eventManager.spritesheets = spritesheets
 spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(spritesheets[0])
 
-
-
 root.onclick('toggle-grid', grid.toggle_grid)
-root.onclick('open-test-screen-button', lambda _: layout_manager.push(spritesheetloader))
-
+root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
+root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
 
 # root.onclick('open-test-screen-button', lambda _: layout_manager.push())
@@ -63,13 +57,13 @@ while True:
 
     layout_manager.draw(screen)
 
-    # if eventManager.main_screen_on:
-    #     draw_scrolling_cursor(screen)
+    if eventManager.main_screen_on and layout_manager.last().id == "root":
+        draw_scrolling_cursor(screen)
 
     # EVENT SECTION
     for event in pygame.event.get():
-        # if eventManager.main_screen_on:
-        #     scroll_canvas(event)
+        if eventManager.main_screen_on and layout_manager.last().id == "root":
+            scroll_canvas(event)
         if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
         if event.type == pygame.MOUSEBUTTONDOWN:

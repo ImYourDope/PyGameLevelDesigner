@@ -13,9 +13,7 @@ class Layout:
     }
 
     def __init__(self, dom, properties):
-        self.id = properties['id'] if 'id' in properties else randint(0, 10**10)
-
-
+        self.id = properties['id'] if 'id' in properties else str(randint(0, 10**10))
         self.properties = properties
         self.dom = dict()
         self.data = {

@@ -31,7 +31,8 @@ left_margin = 400
 right_margin = 0
 
 # UI SETTINGS
-ui_separation_line = 200
+ui_separation_line = 120
+ui_buttons_separation_line = 230
 ui_main_color = (34, 52, 77)
 ui_border_color = (54, 82, 120)
 ui_border_thickness = 3

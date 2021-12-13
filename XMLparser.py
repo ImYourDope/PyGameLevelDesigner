@@ -73,7 +73,7 @@ class XMLParser:
     @staticmethod
     def set_id(props):
         if 'id' not in props:
-            props['id'] = str(randint(0, 10000000000))
+            props['id'] = str(randint(0, 10**10))
 
     @staticmethod
     def set_default_parameters(props, default):
