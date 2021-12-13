@@ -76,9 +76,12 @@ while True:
     for event in pygame.event.get():
         # if eventManager.main_screen_on:
         #     scroll_canvas(event)
-        if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
+        print(event)
+        if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
-
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                layout_manager.process_event(event)
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
