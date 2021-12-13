@@ -81,6 +81,7 @@
            height="40"/>
 
     <ScrollList
+            id="tiles"
             x="0"
             y="180"
             width="400"
