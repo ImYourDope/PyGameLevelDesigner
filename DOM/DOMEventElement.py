@@ -14,6 +14,7 @@ class DOMEventElement:
             'input': [],
             'focus': [],
             'unfocus': [],
+            'scroll': [],
             'change': []
         }
 
@@ -38,6 +39,10 @@ class DOMEventElement:
     def onchange(self, callback):
         self.on('change', callback)
 
+    def onscroll(self, callback):
+        self.on('scroll', callback)
+
+
     def draw(self, screen):
         self.elem.draw(screen)
 
@@ -52,6 +57,8 @@ class DOMEventElement:
             self.elem.onhover(event)
         elif event_name == 'input':
             self.elem.oninput(event)
+        elif event_name == 'scroll':
+            self.elem.onscroll(event)
         elif event_name == 'focus':
             self.elem.onfocus(event)
         elif event_name == 'unfocus':

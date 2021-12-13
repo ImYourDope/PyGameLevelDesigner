@@ -35,9 +35,11 @@ class XMLParser:
             elif elem.tag == 'Image':
                 props = XMLParser.set_default_parameters(props, Image.DEFAULT)
                 dom.append(Image(props))
+            elif elem.tag == 'ScrollList':
+                props = XMLParser.set_default_parameters(props, ScrollList.DEFAULT)
+                dom.append(ScrollList(props))
             else:
-                pass
-                # raise Exception('Incorrect tag')
+                raise Exception('Incorrect tag')
 
         return Layout(dom, XMLParser.set_default_parameters(self.read_metadata(), Layout.DEFAULT))
 

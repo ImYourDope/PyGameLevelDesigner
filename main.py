@@ -38,7 +38,7 @@ for spritesheet_block in spritesheets_blocks:
     spritesheets.extend(spritesheet_block)
 
 eventManager.spritesheets = spritesheets
-spritesheetloader.getElementByID('current-loading-tile').elem.update_image(spritesheets[0])
+spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(spritesheets[0])
 
 
 
@@ -76,8 +76,7 @@ while True:
     for event in pygame.event.get():
         # if eventManager.main_screen_on:
         #     scroll_canvas(event)
-
-        if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION):
+        if event.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
 
         if event.type == pygame.QUIT:
