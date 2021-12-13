@@ -11,10 +11,8 @@ import pygame
 
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
-
 init_layouts()
 from layouts import *
-
 # END OF WARNING
 
 
