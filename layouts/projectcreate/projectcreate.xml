@@ -1,68 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Layout width="800"
-        height="350"
-        x="300"
-        y="175">
+<Layout width="600"
+        height="280"
+        x="400"
+        y="210">
 
     <Label height="40"
-           x="400"
+           x="300"
            y="10"
-           text="CREATE PROJECT"/>
+           text="CREATE PROJECT">
+            <Align x="center"
+                   y="top"/>
+    </Label>
 
     <Label height="40"
-           x="200"
-           y="70"
-           text="Project name:"/>
+           x="300"
+           y="40"
+           text="Project name:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
 
     <Label height="40"
-           x="600"
-           y="70"
-           text="Tile size:"/>
+           x="150"
+           y="120"
+           text="Canvas width:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
 
     <Label height="40"
-           x="200"
-           y="180"
-           text="Canvas width:"/>
-
-    <Label height="40"
-           x="600"
-           y="180"
-           text="Canvas height:"/>
+           x="450"
+           y="120"
+           text="Canvas height:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
 
     <Input id="input-project-name"
            x="100"
-           y="120"
-           width="200"
+           y="70"
+           width="400"
            height="40"/>
 
     <Input id="input-canvas-width"
-           x="100"
-           y="230"
-           width="200"
-           height="40"/>
-
-    <Input id="input-tile-size"
-           x="500"
-           y="120"
+           x="50"
+           y="150"
            width="200"
            height="40"/>
 
     <Input id="input-canvas-height"
-           x="500"
-           y="230"
+           x="350"
+           y="150"
            width="200"
            height="40"/>
 
     <Button id="close-popup"
-            x="100"
-            y="290"
+            x="50"
+            y="220"
             width="200"
-            height="40"/>
+            height="40"
+            text="CLOSE">
+            <Align x="center"
+                   y="center"
+                   />
+    </Button>
 
     <Button id="ok-create-project"
-            x="500"
-            y="290"
+            x="350"
+            y="220"
             width="200"
-            height="40"/>
+            height="40"
+            text="OK">
+            <Align x="center"
+                   y="center"
+                   />
+    </Button>
 
 </Layout>

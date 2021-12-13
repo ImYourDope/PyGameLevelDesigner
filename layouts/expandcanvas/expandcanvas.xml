@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Layout width="600"
+        height="350"
+        x="400"
+        y="175">
+
+    <Label height="40"
+           x="300"
+           y="10"
+           text="EXPAND CANVAS">
+            <Align x="center"
+                   y="top"/>
+    </Label>
+
+    <Label height="40"
+           x="300"
+           y="50"
+           text="Top:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
+
+    <Label height="40"
+           x="300"
+           y="190"
+           text="Bottom:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
+
+    <Label height="40"
+           x="150"
+           y="120"
+           text="Left:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
+
+    <Label height="40"
+           x="450"
+           y="120"
+           text="Right:">
+            <Align x="center"
+                   y="top"/>
+    </Label>
+
+    <Input id="top-expand-input"
+           x="200"
+           y="80"
+           width="200"
+           height="40"/>
+
+    <Input id="left-expand-input"
+           x="50"
+           y="150"
+           width="200"
+           height="40"/>
+
+    <Input id="bottom-expand-input"
+           x="200"
+           y="220"
+           width="200"
+           height="40"/>
+
+    <Input id="right-expand-input"
+           x="350"
+           y="150"
+           width="200"
+           height="40"/>
+
+    <Button id="close-popup"
+            x="50"
+            y="290"
+            width="200"
+            height="40"
+            text="CLOSE">
+            <Align x="center"
+                   y="center"/>
+    </Button>
+
+    <Button id="ok-expand"
+            x="350"
+            y="290"
+            width="200"
+            height="40"
+            text="OK">
+            <Align x="center"
+                   y="center"/>
+    </Button>
+
+</Layout>
