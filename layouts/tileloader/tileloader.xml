@@ -9,7 +9,10 @@
             y="400"
             width="150"
             height="40"
-            text="CLOSE"/>
+            text="CLOSE">
+        <Align x="center"
+               y="center"/>
+    </Button>
 
     <Button id="save-tile"
             x="610"
@@ -17,6 +20,8 @@
             width="150"
             height="40"
             text="SAVE">
+        <Align x="center"
+               y="center"/>
     </Button>
 
     <Input id="input-tile_name"
@@ -28,18 +33,26 @@
     <Label height="40"
            x="400"
            y="290"
-           text="Enter tile name:"/>
+           text="Enter tile name:">
+        <Align x="center"
+               y="center"/>
+    </Label>
 
     <Image id="current-loading-tile"
            width="192"
            height="192"
            x="400"
-           y="170"/>
+           y="170">
+        <Align x="center"
+               y="center"/>
+    </Image>
 
     <Label height="40"
            x="400"
            y="10"
-           text="LOAD TILE"/>
-
+           text="LOAD TILE">
+        <Align x="center"
+               y="center"/>
+    </Label>
 
 </Layout>
