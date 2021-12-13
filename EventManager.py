@@ -42,4 +42,6 @@ class EventManager(Singleton):
         self.dom_elements[key]['callbacks'] = []
 
 
-eventManager = EventManager()
+event_manager = EventManager()
+event_manager.project_created = False
+event_manager.project_name = ''

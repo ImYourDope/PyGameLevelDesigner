@@ -1,11 +1,11 @@
 from userinterface import *
 from canvas import *
-from EventManager import eventManager
-from Interface import Grid
+from EventManager import event_manager
 from XMLparser import XMLParser
 from DOM import layout_manager
 from spritesheetloader import load_spritesheet
 from sys import exit
+from Interface import Grid
 import pygame
 
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
@@ -24,19 +24,20 @@ screen = pygame.display.set_mode((info['width'], info['height']))
 pygame.display.set_caption('PyGame Level Designer')
 clock = pygame.time.Clock()
 
+event_manager.screen = screen
+
 root = xml.read_dom()
 root.id = 'root'
-grid = Grid({})
 
 spritesheets_blocks = load_spritesheet('TX_Tileset_Grass.png')
 spritesheets = []
 for spritesheet_block in spritesheets_blocks:
     spritesheets.extend(spritesheet_block)
 
-eventManager.spritesheets = spritesheets
+event_manager.spritesheets = spritesheets
 spritesheetloader.get_element_by_id('current-loading-tile').elem.update_image(spritesheets[0])
 
-root.onclick('toggle-grid', grid.toggle_grid)
+root.onclick('toggle-grid', Grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
 root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 # popup.getElementByID('current-loading-tile').elem.update_image(tmp)
@@ -50,20 +51,22 @@ layout_manager.push(root)
 while True:
     # DRAW SECTION
     draw_ui_background(screen)
-    draw_canvas(screen)
-    if eventManager.grid_on:
-        grid.draw(screen)
+    if event_manager.project_created:
+        event_manager.canvas.draw()
+        if event_manager.grid_on:
+            event_manager.grid.draw()
     draw_ui(screen)
 
     layout_manager.draw(screen)
 
-    if eventManager.main_screen_on and layout_manager.last().id == "root":
-        draw_scrolling_cursor(screen)
+    if event_manager.main_screen_on and layout_manager.last().id == "root" and event_manager.project_created:
+        event_manager.canvas.draw_scrolling_cursor()
 
     # EVENT SECTION
     for event in pygame.event.get():
-        if eventManager.main_screen_on and layout_manager.last().id == "root":
-            scroll_canvas(event)
+        if event_manager.main_screen_on and layout_manager.last().id == "root" \
+                and event_manager.project_created:
+            event_manager.canvas.scroll(event)
         if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)
         if event.type == pygame.MOUSEBUTTONDOWN:

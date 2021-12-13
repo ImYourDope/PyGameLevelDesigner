@@ -1,13 +1,13 @@
 import pygame
 
-from EventManager import eventManager
+from EventManager import event_manager
 # MAIN SETTINGS
 FPS = 60
 
 # DEFAULT STATES
-eventManager.grid_on = True
-eventManager.main_screen_on = True
-eventManager.popup_screen_on = False
+event_manager.grid_on = True
+event_manager.main_screen_on = True
+event_manager.popup_screen_on = False
 
 # FONT SETTINGS
 pygame.font.init()
@@ -21,6 +21,8 @@ default_sprite_row_color = (255, 255, 0)
 default_sprite_starting_color = (255, 0, 255)
 default_sprite_ending_color = (0, 255, 255)
 spritesheet_colorkey_color = (255, 255, 255)
+
+tile_size = 64
 
 # MAIN SCREEN SETTINGS
 screen_width = 1400
@@ -39,7 +41,6 @@ ui_border_thickness = 3
 
 # CANVAS SETTINGS
 canvas_default_color = (30, 100, 150)
-canvas_pos = [left_margin, top_margin]
 arrow_cursor_size = 30
 
 # EDITING SCREEN SETTINGS
