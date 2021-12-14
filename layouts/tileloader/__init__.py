@@ -1,5 +1,5 @@
 from XMLparser import XMLParser
-from DOM import layout_manager
+from dom import layout_manager
 from EventManager import event_manager
 
 import tkinter

@@ -1,6 +1,6 @@
 import pygame
 
-from DOM import ElementInterface, layout_manager
+from dom import ElementInterface, layout_manager
 from settings import main_font_name, main_font_color
 
 

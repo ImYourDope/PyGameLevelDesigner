@@ -1,8 +1,8 @@
 from XMLparser import XMLParser
-from DOM import layout_manager
+from dom import layout_manager
 from EventManager import event_manager
 from canvas import Canvas
-from Interface import Grid
+from interface import Grid
 
 
 xml = XMLParser('layouts/projectcreate/projectcreate.xml')  # popup xml file

@@ -1,6 +1,6 @@
 import pygame.image
 
-from DOM.ElementInterface import ElementInterface
+from dom.element_interface import ElementInterface
 
 
 class Image(ElementInterface):

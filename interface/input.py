@@ -1,6 +1,6 @@
 from settings import *
 
-from DOM import ElementInterface, layout_manager
+from dom import ElementInterface, layout_manager
 
 class Input(ElementInterface):
     DEFAULT = {
@@ -27,8 +27,6 @@ class Input(ElementInterface):
         self.font = pygame.font.Font(inputline_font, self.rect.height - 2 * inputline_border_thickness)
 
     def draw(self, screen):
-        self.update_surface()
-
         pygame.draw.rect(screen, inputline_background_color, self.rect)
         pygame.draw.rect(screen, inputline_border_color, self.rect, inputline_border_thickness)
         screen.blit(self.render_surface.subsurface(
@@ -66,6 +64,3 @@ class Input(ElementInterface):
             self.text += event.unicode
 
         self.update_surface()
-
-    def inputline_end(self, output):
-        output = self.text

@@ -2,7 +2,7 @@ import pygame
 
 from settings import *
 
-from DOM.ElementInterface import ElementInterface
+from dom.element_interface import ElementInterface
 
 
 def scale(surface, width, height):
@@ -39,13 +39,13 @@ class ScrollList(ElementInterface):
             properties['y']
         )
 
-        self.dimentions = (
+        self.size = (
             properties['width'],
             properties['height']
         )
         self.rect = pygame.Rect(
             self.pos,
-            self.dimentions
+            self.size
         )
 
         self.tiles_per_row = 4
@@ -80,9 +80,9 @@ class ScrollList(ElementInterface):
                 pygame.draw.rect(self.surface, 'green', self.tile_rect(i), 2)
 
     def draw(self, screen):
-        sub_surface = self.surface.subsurface((0, self.scroll_pos), self.dimentions)
+        sub_surface = self.surface.subsurface((0, self.scroll_pos), self.size)
         screen.blit(sub_surface, self.pos)
-        pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.dimentions), ui_border_thickness)
+        pygame.draw.rect(screen, popup_screen_border_color, (self.pos, self.size), ui_border_thickness)
 
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)
