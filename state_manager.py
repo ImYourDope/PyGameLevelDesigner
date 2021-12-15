@@ -13,7 +13,7 @@ class Singleton:
         return cls.instance
 
 
-class EventManager(Singleton):
+class StateManager(Singleton):
     def __init_attr(self, key):
         self.dom_elements[key] = {}
         self.dom_elements[key]['callbacks'] = []
@@ -42,7 +42,7 @@ class EventManager(Singleton):
         self.dom_elements[key]['callbacks'] = []
 
 
-event_manager = EventManager()
-event_manager.project_created = False
-event_manager.project_name = ''
+state_manager = StateManager()
+state_manager.project_created = False
+state_manager.project_name = ''
 

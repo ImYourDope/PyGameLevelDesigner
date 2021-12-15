@@ -16,8 +16,8 @@ def expand_wrapper(_):
             sides[i] = 0
         else:
             sides[i] = int(layout.get_element_by_id(button_ids[i]).elem.text)
-    event_manager.canvas.expand(*sides)
-    event_manager.grid = Grid(event_manager.canvas)
+    state_manager.canvas.expand(*sides)
+    state_manager.grid = Grid(state_manager.canvas)
     layout_manager.pop()
 
 

@@ -1,13 +1,13 @@
 import pygame
 
-from EventManager import event_manager
+from state_manager import state_manager
 # MAIN SETTINGS
 FPS = 60
 
 # DEFAULT STATES
-event_manager.grid_on = True
-event_manager.main_screen_on = True
-event_manager.popup_screen_on = False
+state_manager.grid_on = True
+state_manager.main_screen_on = True
+state_manager.popup_screen_on = False
 
 # FONT SETTINGS
 pygame.font.init()

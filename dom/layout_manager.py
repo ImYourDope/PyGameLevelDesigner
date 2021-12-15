@@ -1,4 +1,4 @@
-from EventManager import Singleton
+from state_manager import Singleton
 
 
 class LayoutManager(Singleton):

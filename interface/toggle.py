@@ -1,6 +1,6 @@
 from .button import Button
 
-from EventManager import event_manager
+from state_manager import state_manager
 
 
 class Toggle(Button):
