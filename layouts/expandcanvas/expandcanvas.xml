@@ -4,15 +4,15 @@
         x="600"
         y="175">
 
-    <Label height="40"
+    <Label height="45"
            x="300"
-           y="10"
+           y="5"
            text="EXPAND CANVAS">
             <Align x="center"
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="300"
            y="50"
            text="Top:">
@@ -20,7 +20,7 @@
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="300"
            y="190"
            text="Bottom:">
@@ -28,7 +28,7 @@
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="150"
            y="120"
            text="Left:">
@@ -36,7 +36,7 @@
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="450"
            y="120"
            text="Right:">

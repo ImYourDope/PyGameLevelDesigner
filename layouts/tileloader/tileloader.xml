@@ -30,7 +30,7 @@
            x="255"
            y="340"/>
 
-    <Label height="40"
+    <Label height="30"
            x="400"
            y="290"
            text="Enter tile name:">
@@ -47,12 +47,12 @@
                y="center"/>
     </Image>
 
-    <Label height="40"
+    <Label height="50"
            x="400"
            y="10"
            text="LOAD TILE">
         <Align x="center"
-               y="center"/>
+               y="top"/>
     </Label>
 
 </Layout>

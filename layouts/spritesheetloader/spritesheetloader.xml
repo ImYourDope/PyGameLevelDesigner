@@ -42,7 +42,7 @@
            x="255"
            y="340"/>
 
-    <Label height="40"
+    <Label height="30"
            x="400"
            y="290"
            text="Enter tile name:">
@@ -58,18 +58,21 @@
         <Align x="center" y="center"/>
     </Image>
 
-    <Label height="40"
+    <Label height="50"
            x="400"
            y="10"
            text="LOAD SPRITESHEET">
 
         <Align x="center"
-               y="center"/>
+               y="top"/>
     </Label>
 
     <Label id="spritesheet-tile-counter"
-           x="750"
+           x="790"
            y="10"
-           height="40"/>
+           height="40">
+            <Align x="right"
+                   y="top"/>
+    </Label>
 
 </Layout>
