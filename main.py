@@ -23,12 +23,12 @@ screen = pygame.display.set_mode((info['width'], info['height']))
 pygame.display.set_caption('PyGame Level Designer')
 clock = pygame.time.Clock()
 
-state_manager.screen = screen
+state_manager.set('screen', screen)
 
 root = xml.read_dom()
 root.id = 'root'
 
-state_manager.spritesheets = []
+state_manager.set('spritesheets', [])
 
 root.onclick('toggle-grid', Grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
@@ -37,7 +37,7 @@ root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas)
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
 root.onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader))
 
-state_manager.DOM_tile_list = root.get_element_by_id('tiles')
+state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
 
 create_scrolling_cursors()
 
@@ -46,23 +46,23 @@ layout_manager.push(root)
 while True:
     # DRAW SECTION
     draw_ui_background(screen)
-    if state_manager.project_created:
-        state_manager.canvas.draw()
-        if state_manager.grid_on:
-            state_manager.grid.draw()
+    if state_manager.get('project created'):
+        state_manager.get('canvas').draw()
+        if state_manager.get('grid on'):
+            state_manager.get('grid').draw()
 
     draw_ui(screen)
 
     layout_manager.draw(screen)
 
-    if state_manager.main_screen_on and layout_manager.last().id == "root" and state_manager.project_created:
-        state_manager.canvas.draw_scrolling_cursor()
+    if layout_manager.last().id == "root" and state_manager.get('project created'):
+        state_manager.get('canvas').draw_scrolling_cursor()
 
     # EVENT SECTION
     for event in pygame.event.get():
         if layout_manager.last().id == "root" \
-                and state_manager.project_created:
-            state_manager.canvas.scroll(event)
+                and state_manager.get('project created'):
+            state_manager.get('canvas').scroll(event)
 
         if event.type in (pygame.KEYDOWN, pygame.MOUSEMOTION, pygame.MOUSEWHEEL):
             layout_manager.process_event(event)

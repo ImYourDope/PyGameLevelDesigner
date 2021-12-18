@@ -5,9 +5,9 @@ from state_manager import state_manager
 FPS = 60
 
 # DEFAULT STATES
-state_manager.grid_on = True
-state_manager.main_screen_on = True
-state_manager.popup_screen_on = False
+state_manager.set('grid on', True)
+state_manager.set('main screen on', True)
+state_manager.set('popup screen on', False)
 
 # FONT SETTINGS
 pygame.font.init()

@@ -35,8 +35,8 @@ def next_elem(_, load_tile):
     counter = layout.get('counter')
     tiles = layout.get('tiles')
     if load_tile:
-        state_manager.DOM_tile_list.elem.list.append(tiles[counter])
-        state_manager.DOM_tile_list.elem.update_surface()
+        state_manager.get('DOM tile list').elem.list.append(tiles[counter])
+        state_manager.get('DOM tile list').elem.update_surface()
 
     counter += 1
 
