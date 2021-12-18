@@ -1,6 +1,6 @@
 import pygame.image
 
-from DOM.ElementInterface import ElementInterface
+from dom.element_interface import ElementInterface
 
 
 class Image(ElementInterface):
@@ -23,11 +23,11 @@ class Image(ElementInterface):
     def __init__(self, properties):
         self.id = properties['id']
         self.pos = properties['x'], properties['y']
-        self.rect_size = properties['width'], properties['height']
+        self.size = properties['width'], properties['height']
 
         self.rect = pygame.Rect(
             self.pos,
-            self.rect_size
+            self.size
         )
         self.align = properties['align']
         self.properties = properties

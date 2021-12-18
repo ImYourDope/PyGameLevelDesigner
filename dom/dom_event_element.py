@@ -42,15 +42,15 @@ class DOMEventElement:
     def onscroll(self, callback):
         self.on('scroll', callback)
 
-
     def draw(self, screen):
         self.elem.draw(screen)
 
     def mouse_collision(self, cors):
         return self.elem.mouse_collision(cors)
 
-
-    def process_event(self, event_name, event={}):
+    def process_event(self, event_name, event=None):
+        if event is None:
+            event = {}
         if event_name == 'click':
             self.elem.onclick(event)
         elif event_name == 'hover':
@@ -69,4 +69,3 @@ class DOMEventElement:
 
         for callback in self.callbacks['change']:
             callback(event)
-

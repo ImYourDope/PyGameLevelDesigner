@@ -1,17 +1,18 @@
 import pygame
 
-from EventManager import event_manager
+from state_manager import state_manager
 # MAIN SETTINGS
 FPS = 60
 
 # DEFAULT STATES
-event_manager.grid_on = True
-event_manager.main_screen_on = True
-event_manager.popup_screen_on = False
+state_manager.set('grid on', True)
+state_manager.set('main screen on', True)
+state_manager.set('popup screen on', False)
 
 # FONT SETTINGS
 pygame.font.init()
 main_font_size = 30
+main_font_name = 'DisposableDroidBB_bld.ttf'
 main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
 
@@ -34,7 +35,7 @@ right_margin = 0
 
 # UI SETTINGS
 ui_separation_line = 147
-ui_buttons_separation_line = 238
+ui_buttons_separation_line = 241
 ui_main_color = (34, 52, 77)
 ui_border_color = (54, 82, 120)
 ui_border_thickness = 3

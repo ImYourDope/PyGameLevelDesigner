@@ -1,11 +1,9 @@
-from .Button import Button
-
-from EventManager import event_manager
+from .button import Button
 
 
 class Toggle(Button):
     def __init__(self, properties):
-        super().__init__( properties)
+        super().__init__(properties)
         self.pressed = False
 
     def draw(self, screen):

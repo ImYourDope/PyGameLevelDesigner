@@ -4,23 +4,23 @@
         x="600"
         y="210">
 
-    <Label height="40"
+    <Label height="45"
            x="300"
-           y="10"
+           y="5"
            text="CREATE PROJECT">
             <Align x="center"
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="300"
-           y="40"
+           y="45"
            text="Project name:">
             <Align x="center"
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="150"
            y="120"
            text="Canvas width:">
@@ -28,7 +28,7 @@
                    y="top"/>
     </Label>
 
-    <Label height="40"
+    <Label height="30"
            x="450"
            y="120"
            text="Canvas height:">
@@ -38,7 +38,7 @@
 
     <Input id="input-project-name"
            x="100"
-           y="70"
+           y="75"
            width="400"
            height="40"/>
 

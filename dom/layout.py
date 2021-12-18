@@ -1,7 +1,7 @@
 import pygame
 from random import randint
 
-from DOM import DOMEventElement, layout_manager
+from dom import DOMEventElement, layout_manager
 from settings import ui_main_color, popup_screen_border_color
 
 
@@ -82,7 +82,7 @@ class Layout:
             next = self.dom[new_focus]
             next.process_event('focus')
 
-    def cors_to_dict(self, cors):
+    def pos_to_dict(self, cors):
         return {
             'x': cors[0],
             'y': cors[1]
@@ -94,7 +94,7 @@ class Layout:
                 self.dom[self.data['object in focus']].process_event('input', event)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             for elem in self.dom.values():
-                if elem.mouse_collision(layout_manager.cors_to_relative_pos(pygame.mouse.get_pos())):
+                if elem.mouse_collision(layout_manager.absolute_pos_to_relative_pos(pygame.mouse.get_pos())):
                     elem.process_event('click', event)
                     self.change_focus(elem.id)
                     break
@@ -102,7 +102,7 @@ class Layout:
                 self.change_focus(None)
         elif event.type == pygame.MOUSEMOTION:
             for elem in self.dom.values():
-                if elem.mouse_collision(layout_manager.cors_to_relative_pos(pygame.mouse.get_pos())):
+                if elem.mouse_collision(layout_manager.absolute_pos_to_relative_pos(pygame.mouse.get_pos())):
                     elem.props['hover'] = True
                     elem.process_event('hover', event)
                 else:
@@ -121,7 +121,7 @@ class Layout:
         return (self.properties['width'],
                 self.properties['height'])
 
-    def cors(self):
+    def pos(self):
         return (self.properties['x'],
                 self.properties['y'])
 
@@ -143,7 +143,7 @@ class Layout:
             # pygame.draw.rect(screen, ui_main_color, self.rect())
             for elem in self.dom.values():
                 elem.draw(surface)
-            screen.blit(surface, self.cors())
+            screen.blit(surface, self.pos())
         else:
             for elem in self.dom.values():
                 elem.draw(screen)

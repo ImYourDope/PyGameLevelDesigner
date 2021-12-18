@@ -1,6 +1,6 @@
 from XMLparser import XMLParser
-from DOM import layout_manager
-from EventManager import event_manager
+from dom import layout_manager
+from state_manager import state_manager
 
 import tkinter
 import tkinter.filedialog
@@ -26,8 +26,8 @@ def init(props):
 
 
 def save_tile(_):
-    event_manager.DOM_tile_list.elem.list.append(layout.get('tile'))
-    event_manager.DOM_tile_list.elem.update_surface()
+    state_manager.get('DOM tile list').elem.list.append(layout.get('tile'))
+    state_manager.get('DOM tile list').elem.update_surface()
     layout_manager.pop()
 
 

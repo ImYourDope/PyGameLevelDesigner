@@ -1,8 +1,8 @@
 from XMLparser import XMLParser
-from DOM import layout_manager
-from EventManager import event_manager
+from dom import layout_manager
+from state_manager import state_manager
 from canvas import Canvas
-from Interface import Grid
+from interface import Grid
 
 
 xml = XMLParser('layouts/projectcreate/projectcreate.xml')  # popup xml file
@@ -14,12 +14,12 @@ def create_project(_):
     if layout.get_element_by_id('input-project-name').elem.text != '' and \
             int(layout.get_element_by_id('input-canvas-width').elem.text) > 0 and \
             int(layout.get_element_by_id('input-canvas-height').elem.text) > 0:
-        event_manager.canvas = Canvas(event_manager.screen,
+        state_manager.set('canvas', Canvas(state_manager.get('screen'),
                                       int(layout.get_element_by_id('input-canvas-width').elem.text),
-                                      int(layout.get_element_by_id('input-canvas-height').elem.text))
-        event_manager.grid = Grid(event_manager.canvas)
-        event_manager.project_name = layout.get_element_by_id('input-project-name').elem.text
-        event_manager.project_created = True
+                                      int(layout.get_element_by_id('input-canvas-height').elem.text)))
+        state_manager.set('grid', Grid(state_manager.get('canvas')))
+        state_manager.set('project name', layout.get_element_by_id('input-project-name').elem.text)
+        state_manager.set('project created', True)
         layout_manager.pop()
 
 

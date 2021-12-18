@@ -19,6 +19,5 @@ class Grid:
 
     @staticmethod
     def toggle_grid(_):
-        event_manager.grid_on = not event_manager.grid_on
-        print(event_manager.grid_on)
+        state_manager.set('grid on', not state_manager.get('grid on'))
 

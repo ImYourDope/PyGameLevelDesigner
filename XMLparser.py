@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 from random import randint
 
-from Interface import *
-from DOM.Layout import Layout
+from interface import *
+from dom.layout import Layout
 
 
 class XMLParser:
