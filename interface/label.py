@@ -78,6 +78,7 @@ class Label(ElementInterface):
 
     def update_surface(self):
         self.surface = self.font_renderer.render(self.text, False, main_font_color)
+        self.set_blitting_pos()
 
     def mouse_collision(self, pos):
         return self.surface.get_rect(topleft=self.blitting_pos).collidepoint(pos)
