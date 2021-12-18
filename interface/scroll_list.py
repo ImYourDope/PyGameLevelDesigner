@@ -87,6 +87,10 @@ class ScrollList(ElementInterface):
     def mouse_collision(self, cors):
         return self.rect.collidepoint(cors)
 
+    def selected_tile(self):
+        if self.active is not None:
+            return self.list[self.active]
+        return None
     def onclick(self, event):
         pos = [*event.pos]
         pos[0] -= self.pos[0]

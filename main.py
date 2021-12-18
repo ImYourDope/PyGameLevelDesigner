@@ -48,9 +48,6 @@ while True:
     draw_ui_background(screen)
     if state_manager.get('project created'):
         state_manager.get('canvas').draw()
-        if state_manager.get('grid on'):
-            state_manager.get('grid').draw()
-
     draw_ui(screen)
 
     layout_manager.draw(screen)

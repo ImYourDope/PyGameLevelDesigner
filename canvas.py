@@ -1,3 +1,4 @@
+from interface import Grid
 from settings import *
 
 right_arrow_cursor = None
@@ -27,8 +28,17 @@ class Canvas:
         self.canvas = pygame.Surface((self.width, self.height))
         self.canvas.fill(canvas_default_color)
 
+        self.grid = Grid(width_in_tiles, height_in_tiles)
+    def relative_pos(self, pos):
+        return (
+            pos[0] - self.pos[0],
+            pos[1] - self.pos[1]
+        )
     def draw(self):
+        self.canvas.fill(canvas_default_color)
+        self.grid.draw(self.canvas, (0, 0), self.relative_pos(pygame.mouse.get_pos()), state_manager.get('DOM tile list').elem.selected_tile())
         self.screen.blit(self.canvas, self.pos)
+
 
     def scroll(self, event):
         if top_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \

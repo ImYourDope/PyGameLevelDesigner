@@ -17,7 +17,7 @@ def create_project(_):
         state_manager.set('canvas', Canvas(state_manager.get('screen'),
                                       int(layout.get_element_by_id('input-canvas-width').elem.text),
                                       int(layout.get_element_by_id('input-canvas-height').elem.text)))
-        state_manager.set('grid', Grid(state_manager.get('canvas')))
+
         state_manager.set('project name', layout.get_element_by_id('input-project-name').elem.text)
         state_manager.set('project created', True)
         layout_manager.pop()
