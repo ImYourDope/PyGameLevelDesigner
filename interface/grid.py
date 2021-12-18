@@ -1,11 +1,10 @@
 from settings import *
 
 
-
 class Grid:
     def __init__(self, tile_width, tile_height):
         self.tile_size = (tile_width, tile_height)
-        self.size = (tile_width * tile_size, tile_height * tile_size)
+        self.size = (tile_width * tile_size + grid_thickness, tile_height * tile_size + grid_thickness)
 
         self.grid = pygame.Surface(self.size)
 

@@ -17,7 +17,6 @@ def expand_wrapper(_):
         else:
             sides[i] = int(layout.get_element_by_id(button_ids[i]).elem.text)
     state_manager.get('canvas').expand(*sides)
-    state_manager.set('grid', Grid(state_manager.get('canvas')))
     layout_manager.pop()
 
 

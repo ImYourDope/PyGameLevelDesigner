@@ -1,7 +1,6 @@
 from sys import exit
 
 from dom import layout_manager
-from interface import Grid
 from XMLparser import XMLParser
 from canvas import *
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
@@ -66,6 +65,8 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 layout_manager.process_event(event)
+                if state_manager.get('canvas') is not None:
+                    state_manager.get('canvas').onclick(event)
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()

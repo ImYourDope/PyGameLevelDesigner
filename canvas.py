@@ -2,6 +2,7 @@ from enum import Enum
 
 from interface import Grid
 from settings import *
+from tile import Tile
 
 right_arrow_cursor = None
 left_arrow_cursor = None
@@ -33,11 +34,12 @@ class Canvas:
         self.pos = [left_margin, 0]
         self.width_in_tiles = width_in_tiles
         self.height_in_tiles = height_in_tiles
-        self.width = self.width_in_tiles * tile_size
-        self.height = self.height_in_tiles * tile_size
+        self.width = self.width_in_tiles * tile_size + grid_thickness
+        self.height = self.height_in_tiles * tile_size + grid_thickness
         self.canvas = pygame.Surface((self.width, self.height))
         self.canvas.fill(canvas_default_color)
 
+        self.tiles = []
         self.grid = Grid(width_in_tiles, height_in_tiles)
 
     def relative_pos(self, pos):
@@ -46,21 +48,28 @@ class Canvas:
             pos[1] - self.pos[1]
         )
 
-    def draw(self):
-        self.canvas.fill(canvas_default_color)
+    def process_tile(self):
         tile = state_manager.get('DOM tile list').elem.selected_tile()
         mouse_pos = self.relative_pos(pygame.mouse.get_pos())
         tile_pos = (mouse_pos[0] - tile_size / 2, mouse_pos[1] - tile_size / 2)
 
         if state_manager.get('grid on'):
-            self.grid.draw(self.canvas)
             tile_pos = Grid.tile_pos(mouse_pos)
-            if tile is None:
-                tile = pygame.Surface((tile_size - grid_thickness, tile_size - grid_thickness))
-                tile.fill('black')
+        return tile, tile_pos
 
-        if tile is not None:
+    def draw(self):
+        self.canvas.fill(canvas_default_color)
+
+        for tile in self.tiles:
+            tile.draw(self.canvas)
+
+        tile, tile_pos = self.process_tile()
+
+        if tile is not None and self.get_scroll(pygame.mouse.get_pos()) == MouseScroll.No:
             self.canvas.blit(tile, tile_pos)
+
+        if state_manager.get('grid on'):
+            self.grid.draw(self.canvas)
         self.screen.blit(self.canvas, self.pos)
 
     def get_scroll(self, pos):
@@ -73,11 +82,11 @@ class Canvas:
 
         if right_scrolling_rect.collidepoint(pos) and \
                 self.pos[0] + self.width + void_margin > editing_screen_rect.right:
-            return MouseScroll.Left
+            return MouseScroll.Right
 
         if left_scrolling_rect.collidepoint(pos) and \
                 self.pos[0] < editing_screen_rect.left + void_margin:
-            return MouseScroll.Right
+            return MouseScroll.Left
 
         return MouseScroll.No
 
@@ -92,32 +101,27 @@ class Canvas:
             self.pos[1] += tile_size
         elif move == MouseScroll.Down:
             self.pos[1] -= tile_size
-        elif move == MouseScroll.Left:
-            self.pos[0] -= tile_size
         elif move == MouseScroll.Right:
+            self.pos[0] -= tile_size
+        elif move == MouseScroll.Left:
             self.pos[0] += tile_size
 
     def draw_scrolling_cursor(self):
-        if top_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
-                self.pos[1] < editing_screen_rect.top + void_margin:
-            pygame.mouse.set_visible(False)
+        move = self.get_scroll(pygame.mouse.get_pos())
+        if move == MouseScroll.Up:
             self.screen.blit(top_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                                 pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-        elif bottom_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
-                self.pos[1] + self.height + void_margin > editing_screen_rect.bottom:
-            pygame.mouse.set_visible(False)
+        elif move == MouseScroll.Down:
             self.screen.blit(bottom_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                                    pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-        elif left_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
-                self.pos[0] < editing_screen_rect.left + void_margin:
-            pygame.mouse.set_visible(False)
+        elif move == MouseScroll.Left:
             self.screen.blit(left_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                                  pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
-        elif right_scrolling_rect.collidepoint(pygame.mouse.get_pos()) and \
-                self.pos[0] + self.width + void_margin > editing_screen_rect.right:
-            pygame.mouse.set_visible(False)
+        elif move == MouseScroll.Right:
             self.screen.blit(right_arrow_cursor, (pygame.mouse.get_pos()[0] - arrow_cursor_size / 2,
                                                   pygame.mouse.get_pos()[1] - arrow_cursor_size / 2))
+        if move != MouseScroll.No:
+            pygame.mouse.set_visible(False)
         else:
             pygame.mouse.set_visible(True)
 
@@ -147,3 +151,13 @@ class Canvas:
         self.width = self.canvas.get_width()
         self.height_in_tiles = self.height // tile_size
         self.width_in_tiles = self.width // tile_size
+
+    def onclick(self, event):
+        if event.type != pygame.MOUSEBUTTONDOWN:
+            return
+        tile, tile_pos = self.process_tile()
+
+        if tile is not None:
+            self.tiles.append(Tile(tile, tile_pos))
+
+
