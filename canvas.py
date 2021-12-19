@@ -28,6 +28,14 @@ def create_scrolling_cursors():
     bottom_arrow_cursor = pygame.transform.rotate(arrow_cursor, 90)
 
 
+def switch_canvas():
+    a = state_manager.get('active_canvas')
+    state_manager.get('inactive_canvas').pos = state_manager.get('active_canvas').pos
+    state_manager.set('active_canvas', state_manager.get('inactive_canvas'))
+    state_manager.set('inactive_canvas', a)
+    state_manager.set('main_on', not state_manager.get('main_on'))
+
+
 class Canvas:
     def __init__(self, screen, width_in_tiles, height_in_tiles):
         self.screen = screen
@@ -153,11 +161,19 @@ class Canvas:
         self.width_in_tiles = self.width // tile_size
 
     def onclick(self, event):
-        if event.type != pygame.MOUSEBUTTONDOWN:
-            return
+        del_tile = None
         tile, tile_pos = self.process_tile()
-
-        if tile is not None:
-            self.tiles.append(Tile(tile, tile_pos))
-
-
+        if event.button == 1:
+            print('no')
+            if tile is not None:
+                self.tiles.append(Tile(tile, tile_pos))
+        elif event.button == 3:
+            print('yes')
+            for i in reversed(self.tiles):
+                if tile.get_rect().collidepoint(self.relative_pos(pygame.mouse.get_pos())):
+                    tile.get_rect().collidepoint(self.relative_pos(pygame.mouse.get_pos()))
+                    if del_tile is None:
+                        del_tile = len(self.tiles) - i - 1
+                        break
+            if del_tile is not None:
+                self.tiles.pop(del_tile)

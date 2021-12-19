@@ -1,6 +1,6 @@
 import pygame
-
 from state_manager import state_manager
+
 # MAIN SETTINGS
 FPS = 60
 
@@ -56,7 +56,7 @@ grid_color = (255, 255, 255)
 grid_colorkey = 'blue'
 
 # SCROLLING SETTINGS
-scrolling_margin = 100
+scrolling_margin = 64
 void_margin = 120
 top_scrolling_rect = pygame.Rect(left_margin + scrolling_margin, top_margin,
                                  editing_screen_width - 2 * scrolling_margin, scrolling_margin)
