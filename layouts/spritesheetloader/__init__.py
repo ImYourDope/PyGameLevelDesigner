@@ -32,25 +32,25 @@ def init(props):
 
 
 def next_elem(_, load_tile):
-    counter = layout.get('counter')
-    tiles = layout.get('tiles')
-    if load_tile:
-        state_manager.get('DOM tile list').elem.list.append(tiles[counter])
-        state_manager.get('DOM tile list').elem.update_surface()
+    if layout.get_element_by_id('input-tile_name').elem.text != '' or not load_tile:
+        counter = layout.get('counter')
+        tiles = layout.get('tiles')
+        if load_tile:
+            state_manager.get('DOM tile list').elem.list.append(tiles[counter])
+            state_manager.get('DOM tile list').elem.update_surface()
 
-    counter += 1
+        counter += 1
 
-    if counter >= len(tiles):
-        layout_manager.pop()
-        return
-    elif counter == len(tiles) - 1:
-        layout.get_element_by_id('next-tile').elem.set_text('DONE')
+        if counter >= len(tiles):
+            layout_manager.pop()
+            return
+        elif counter == len(tiles) - 1:
+            layout.get_element_by_id('next-tile').elem.set_text('DONE')
 
-    layout.get_element_by_id('current-loading-tile').elem.update_image(tiles[counter])
-
-    layout.get_element_by_id('spritesheet-tile-counter').elem.set_text('{0}/{1}'.format(counter + 1, len(tiles)))
-
-    layout.set('counter', counter)
+        layout.get_element_by_id('current-loading-tile').elem.update_image(tiles[counter])
+        layout.get_element_by_id('spritesheet-tile-counter').elem.set_text('{0}/{1}'.format(counter + 1, len(tiles)))
+        layout.get_element_by_id('input-tile_name').elem.zero()
+        layout.set('counter', counter)
 
 
 

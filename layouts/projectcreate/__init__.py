@@ -1,6 +1,7 @@
 from XMLparser import XMLParser
 from dom import layout_manager
 from canvas import *
+from layouts import expandcanvas
 
 xml = XMLParser('layouts/projectcreate/projectcreate.xml')  # popup xml file
 layout = xml.read_dom()
@@ -22,6 +23,10 @@ def create_project(_):
         state_manager.set('project created', True)
         state_manager.set('main_on', True)
         state_manager.get('root').onclick('collision-button', switch_canvas())
+        state_manager.get('root').onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
+        layout.get_element_by_id('input-project-name').elem.zero()
+        layout.get_element_by_id('input-canvas-width').elem.zero()
+        layout.get_element_by_id('input-canvas-height').elem.zero()
         layout_manager.pop()
 
 

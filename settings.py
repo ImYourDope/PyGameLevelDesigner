@@ -69,7 +69,7 @@ right_scrolling_rect = pygame.Rect(left_margin + editing_screen_width - scrollin
                                    scrolling_margin, editing_screen_height)
 
 # INPUTLINE SETTINGS
-numbers_vocabulary = '0123456789'
+numbers_vocabulary = '-0123456789'
 letters_vocabulary = 'abcdefghijklmnopqrstuvwxyz'
 capital_letters_vocabulary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 symbols_vocabulary = "_-'@#"

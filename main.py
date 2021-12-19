@@ -23,7 +23,6 @@ state_manager.set('spritesheets', [])
 
 root.onclick('toggle-grid', Grid.toggle_grid)
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
-root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
 root.onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader))
 state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
