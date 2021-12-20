@@ -11,8 +11,8 @@ Made by Artyom Shindin and Shlyakhtun Prokhor as a semester programming project 
 
 ## Libraries used:
  - PyGame
- - Tkinter.
+ - Tkinter
 
 ## System requirements: 
  - 100 MB RAM
- - 2 GHz processor.
+ - 2 GHz processor
