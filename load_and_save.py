@@ -105,6 +105,15 @@ def load(_):
     canvas = Canvas(state_manager.get('screen'), project_raw['canvas']['width in tiles'], project_raw['canvas']['height in tiles'])
     canvas.tiles = tiles
     state_manager.set('active_canvas', canvas)
+
+    canvas = Canvas(state_manager.get('screen'), project_raw['canvas']['width in tiles'],
+                    project_raw['canvas']['height in tiles'])
+    canvas.tiles = []
+    state_manager.set('inactive_canvas', canvas)
+
+    state_manager.set('main_on', True)
+
+
     state_manager.get('DOM tile list').elem.list = sprites
     state_manager.get('DOM tile list').elem.update_surface()
 
