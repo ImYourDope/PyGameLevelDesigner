@@ -177,11 +177,10 @@ class Canvas:
                 self.tiles.append(Tile(tile, tile_pos))
         elif event.button == 3:
             print('yes')
-            for i in reversed(self.tiles):
-                if tile.get_rect().collidepoint(self.relative_pos(pygame.mouse.get_pos())):
-                    tile.get_rect().collidepoint(self.relative_pos(pygame.mouse.get_pos()))
-                    if del_tile is None:
-                        del_tile = len(self.tiles) - i - 1
-                        break
+            relative_pos = self.relative_pos(pygame.mouse.get_pos())
+            for tile in reversed(self.tiles):
+                if tile.mouse_collision(relative_pos):
+                    del_tile = tile
+                    break
             if del_tile is not None:
-                self.tiles.pop(del_tile)
+                self.tiles.remove(del_tile)

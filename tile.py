@@ -4,7 +4,7 @@ class Tile:
         self.pos = pos
 
     def mouse_collision(self, pos):
-        return self.image.get_rect(topleft=self.pos).collidespoint(pos)
+        return self.image.get_rect(topleft=self.pos).collidepoint(pos)
 
     def draw(self, screen):
         screen.blit(self.image, self.pos)
