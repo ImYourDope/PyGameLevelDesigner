@@ -97,4 +97,4 @@ main_screen_buttons_id = ['create-project-button', 'load-project-button', 'save-
                           'layer-menu-button', 'test-run-button']
 start_buttons_state = [True, True, False, True, True, False, False, False, False, False]
 main_buttons_state = [True, True, True, True, True, True, True, True, True, True]
-collision_buttons_state = [False, False, False, False, False, False, True, False, False, False]
+collision_buttons_state = [False, False, False, False, False, True, True, False, False, False]

@@ -5,7 +5,7 @@ from state_manager import state_manager
 from canvas import Canvas
 from tile import Tile
 from XMLparser import XMLParser
-from supportfunctions import text_buttons_update
+from utils import text_buttons_update
 from settings import main_buttons_state
 
 

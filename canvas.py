@@ -115,8 +115,7 @@ class Canvas:
         return MouseScroll.No
 
     def scroll(self, event):
-        """Scrolling canvas.""" \
- \
+        """Scrolling canvas."""
         if event.type != pygame.MOUSEBUTTONDOWN:
             return
         if not pygame.mouse.get_pressed()[0]:
