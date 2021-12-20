@@ -26,8 +26,9 @@ def init(props):
 
 
 def save_tile(_):
-    if layout.get_element_by_id('input-tile_name').elem.text != '':
-        state_manager.get('DOM tile list').elem.list.append(layout.get('tile'))
+    name = layout.get_element_by_id('input-tile_name').elem.text
+    if name != '':
+        state_manager.get('DOM tile list').elem.append(layout.get('tile'), name)
         state_manager.get('DOM tile list').elem.update_surface()
         layout.get_element_by_id('input-tile_name').elem.zero()
         layout_manager.pop()
