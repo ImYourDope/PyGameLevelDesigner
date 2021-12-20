@@ -1,6 +1,7 @@
 from sys import exit
 from canvas import *
 from dom import layout_manager
+from load_and_save import save, load
 from userinterface import *
 from supportfunctions import *
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
@@ -42,7 +43,13 @@ add_onclick('collision-button', lambda _: switch_canvas())
 add_onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
 
 root.oninput('tile-library-search-line', lambda _: state_manager.get('DOM tile list').elem.set_search(
-    root.get_element_by_id('tile-library-search-line').elem.text))
+    root.get_element_by_id('tile-library-search-line').elem.text
+))
+
+root.onclick('save-project-button', save)
+root.onclick('load-project-button', load)
+
+
 state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
 state_manager.set('root', root)
 
