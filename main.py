@@ -2,7 +2,7 @@ from sys import exit
 
 from canvas import *
 from dom import layout_manager
-from load_and_save import save
+from load_and_save import save, load
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
 from supportfunctions import *
@@ -46,6 +46,7 @@ root.oninput('tile-library-search-line', lambda _: state_manager.get('DOM tile l
 ))
 
 root.onclick('save-project-button', save)
+root.onclick('load-project-button', load)
 
 state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
 state_manager.set('root', root)

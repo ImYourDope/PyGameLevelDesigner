@@ -4,6 +4,8 @@ import os
 import pygame.image
 
 from state_manager import state_manager
+from canvas import Canvas
+from tile import Tile
 
 
 def save_sprites(sprites):
@@ -12,16 +14,16 @@ def save_sprites(sprites):
     if not os.path.isdir(directory):
         os.mkdir(directory)
 
-    result = {}
+    result = []
 
     for i in range(len(sprites)):
         filename = 'sprite{:05d}.png'.format(i)
         path = os.path.join(os.curdir, name, filename)
         pygame.image.save(sprites[i][0], path)
-        result[i] = {
-            'path': filename,
+        result.append({
+            'path': path,
             'name': sprites[i][1],
-        }
+        })
 
     return result
 
@@ -65,3 +67,36 @@ def save(_):
     path = os.path.join(directory, 'project.json')
     with open(path, 'w') as f:
         json.dump(project, f)
+
+
+def load(_):
+    name = 'project'
+    directory = os.path.join(os.curdir, name)
+    json_path = os.path.join(directory, 'project.json')
+    with open(json_path, 'r') as f:
+        project_raw = json.load(f)
+
+    state_manager.set('project name', project_raw['name'])
+    state_manager.set('project created', True)
+
+    sprites = []
+    for sprite in project_raw['sprites']:
+        name = sprite['name']
+        surface = pygame.image.load(sprite['path'])
+        surface.set_colorkey('white')
+        sprites.append([surface, name])
+
+    tiles = []
+    for tile in project_raw['tiles']:
+        image = [image for image, name in sprites if name == tile['name']][0]
+        tiles.append(Tile(
+            image,
+            tile['pos'],
+            tile['name'],
+        ))
+
+    canvas = Canvas(state_manager.get('screen'), project_raw['canvas']['width in tiles'], project_raw['canvas']['height in tiles'])
+    canvas.tiles = tiles
+    state_manager.set('active_canvas', canvas)
+    state_manager.get('DOM tile list').elem.list = sprites
+    state_manager.get('DOM tile list').elem.update_surface()
