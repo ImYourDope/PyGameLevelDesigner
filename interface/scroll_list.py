@@ -47,6 +47,7 @@ class ScrollList(ElementInterface):
             self.pos,
             self.size
         )
+        self.font = pygame.font.Font(main_font_name, 20)
 
         self.tiles_per_row = 4
         self.width = 64
@@ -69,13 +70,27 @@ class ScrollList(ElementInterface):
     def tile_rect(self, i):
         return pygame.Rect(self.tile_pos(i), (self.width, self.height))
 
+    def append(self, tile, name):
+        self.list.append([tile, name])
+
     def update_surface(self):
+
         for i in range(len(self.list)):
-            self.list[i] = scale(self.list[i], self.width, self.height)
+            self.list[i][0] = scale(self.list[i][0], self.width, self.height)
 
         self.surface.fill('white')
         for i in range(len(self.list)):
-            self.surface.blit(self.list[i], self.tile_pos(i))
+            tile = self.list[i][0]
+            name = self.list[i][1]
+            self.surface.blit(tile, self.tile_pos(i))
+
+            text = self.font.render(name, False, (254, 255, 255))
+
+            text_pos = self.tile_pos(i)
+            self.surface.blit(text, (
+                text_pos[0],
+                text_pos[1] + self.height
+            ))
             if self.active == i:
                 pygame.draw.rect(self.surface, 'green', self.tile_rect(i), 2)
 
@@ -89,8 +104,9 @@ class ScrollList(ElementInterface):
 
     def selected_tile(self):
         if self.active is not None:
-            return self.list[self.active]
+            return self.list[self.active][0]
         return None
+
     def onclick(self, event):
         pos = [*event.pos]
         pos[0] -= self.pos[0]
