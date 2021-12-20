@@ -4,6 +4,9 @@ import pygame.image
 from state_manager import state_manager
 from canvas import Canvas
 from tile import Tile
+from XMLparser import XMLParser
+from supportfunctions import text_buttons_update
+from settings import main_buttons_state
 
 
 def save_sprites(sprites):
@@ -104,3 +107,6 @@ def load(_):
     state_manager.set('active_canvas', canvas)
     state_manager.get('DOM tile list').elem.list = sprites
     state_manager.get('DOM tile list').elem.update_surface()
+
+    xml = XMLParser('main.xml')
+    text_buttons_update(xml.read_dom(), main_buttons_state)
