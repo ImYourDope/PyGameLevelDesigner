@@ -21,6 +21,8 @@ class Button(ElementInterface):
     }
 
     def __init__(self, properties):
+        """Initializes the button."""
+
         self.id = properties['id']
 
         if properties['hover']['position'] == 'relative':
@@ -36,30 +38,16 @@ class Button(ElementInterface):
         )
         hovered_pos = (properties['hover']['x'], properties['hover']['y'])
         self.hovered_rect = self.surface.get_rect(topleft=hovered_pos)
-
         self.align = properties['align']
 
-    # def centering(self, pos):
-    #     pos = [*pos]
-    #     width = self.surface.get_width()
-    #     height = self.surface.get_height()
-    #
-    #     if self.align['x'] == 'center':
-    #         pos[0] -= width / 2
-    #     elif self.align['x'] == 'right':
-    #         pos[0] -= width
-    #
-    #     if self.align['y'] == 'center':
-    #         pos[1] += height / 2
-    #     elif self.align['y'] == 'bottom':
-    #         pos[1] += height
-    #
-    #     return pos
-
     def mouse_collision(self, cors):
+        """Checks mouse collision with the button."""
+
         return self.rect.collidepoint(cors)
 
     def blitting_pos(self):
+        """Calculates position for button blitting."""
+
         pos = [*self.pos]
 
         button_width = self.rect.width
@@ -81,6 +69,8 @@ class Button(ElementInterface):
         return pos
 
     def draw(self, screen):
+        """Draws the button."""
+
         if not layout_manager.ishovered(self.id):
             screen.blit(self.surface, self.blitting_pos())
         else:
@@ -89,4 +79,6 @@ class Button(ElementInterface):
         pygame.draw.rect(screen, popup_screen_border_color, self.rect, 2)
 
     def set_text(self, text):
+        """Sets button's text."""
+
         self.surface = main_font.render(text, False, main_font_color)

@@ -12,8 +12,8 @@ state_manager.set('popup screen on', False)
 # FONT SETTINGS
 pygame.font.init()
 main_font_size = 30
-main_font_name = 'DisposableDroidBB_bld.ttf'
-main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
+main_font_name = 'resources/DisposableDroidBB_bld.ttf'
+main_font = pygame.font.Font('resources/DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
 inactive_font_color = (100, 100, 100)
 
@@ -76,7 +76,7 @@ inputline_vocabulary = numbers_vocabulary + letters_vocabulary + capital_letters
 inputline_background_color = (255, 255, 255)
 inputline_border_color = ui_border_color
 inputline_border_thickness = 2
-inputline_font = 'DisposableDroidBB_bld.ttf'
+inputline_font = 'resources/DisposableDroidBB_bld.ttf'
 inputline_font_size = main_font_size
 inputline_font_color = (0, 0, 0)
 main_screen_inputlines = []

@@ -1,4 +1,3 @@
-from XMLparser import XMLParser
 from dom import layout_manager
 from canvas import *
 from supportfunctions import *
@@ -9,12 +8,16 @@ layout.onclick('close-popup', lambda _: layout_manager.pop())
 
 
 def create_project(_):
+    """Creates project and initializes some states."""
+
     if layout.get_element_by_id('input-project-name').elem.text != '' and \
             int(layout.get_element_by_id('input-canvas-width').elem.text) > 0 and \
             int(layout.get_element_by_id('input-canvas-height').elem.text) > 0:
+
         state_manager.set('active_canvas', Canvas(state_manager.get('screen'),
                                                   int(layout.get_element_by_id('input-canvas-width').elem.text),
                                                   int(layout.get_element_by_id('input-canvas-height').elem.text)))
+
         state_manager.set('inactive_canvas', Canvas(state_manager.get('screen'),
                                                     int(layout.get_element_by_id('input-canvas-width').elem.text),
                                                     int(layout.get_element_by_id('input-canvas-height').elem.text)))
