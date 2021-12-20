@@ -1,6 +1,6 @@
 from dom import layout_manager
 from canvas import *
-from supportfunctions import *
+from utils import *
 
 xml = XMLParser('layouts/projectcreate/projectcreate.xml')  # popup xml file
 layout = xml.read_dom()

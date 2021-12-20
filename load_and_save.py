@@ -1,16 +1,16 @@
 import json
 import os
-
 import pygame.image
-
 from state_manager import state_manager
 from canvas import Canvas
 from tile import Tile
 
 
 def save_sprites(sprites):
+    """Saves sprites in file."""
     name = 'project/sprites'
     directory = os.path.join(os.curdir, name)
+
     if not os.path.isdir(directory):
         os.mkdir(directory)
 
@@ -29,7 +29,9 @@ def save_sprites(sprites):
 
 
 def dump_tiles(tiles):
+    """Saves all tiles and sprites."""
     tiles_raw = []
+
     for tile in tiles:
         tiles_raw.append({
             'pos': tile.pos,
@@ -40,8 +42,10 @@ def dump_tiles(tiles):
 
 
 def save(_):
+    """Saves all project data."""
     name = 'project'
     directory = os.path.join(os.curdir, name)
+
     if not os.path.isdir(directory):
         os.mkdir(directory)
 
@@ -52,7 +56,6 @@ def save(_):
 
     sprites = state_manager.get('DOM tile list').elem.list
     tiles = canvas.tiles
-
     sprites_data = save_sprites(sprites)
 
     project = {
@@ -70,6 +73,7 @@ def save(_):
 
 
 def load(_):
+    """Loads projects."""
     name = 'project'
     directory = os.path.join(os.curdir, name)
     json_path = os.path.join(directory, 'project.json')

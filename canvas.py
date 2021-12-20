@@ -2,7 +2,7 @@ from enum import Enum
 from XMLparser import *
 from interface import Grid
 from tile import Tile
-from supportfunctions import *
+from utils import *
 
 right_arrow_cursor = None
 left_arrow_cursor = None
@@ -115,8 +115,8 @@ class Canvas:
         return MouseScroll.No
 
     def scroll(self, event):
-        """Scrolling canvas."""\
-
+        """Scrolling canvas.""" \
+ \
         if event.type != pygame.MOUSEBUTTONDOWN:
             return
         if not pygame.mouse.get_pressed()[0]:
@@ -196,13 +196,10 @@ class Canvas:
         tile, tile_pos = self.process_tile()
         name = state_manager.get('DOM tile list').elem.selected_name()
 
-
         if event.button == 1:
-            print('no')
             if tile is not None:
                 self.tiles.append(Tile(tile, tile_pos, name))
         elif event.button == 3:
-            print('yes')
             relative_pos = self.relative_pos(pygame.mouse.get_pos())
             for tile in reversed(self.tiles):
                 if tile.mouse_collision(relative_pos):

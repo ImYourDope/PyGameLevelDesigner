@@ -3,7 +3,7 @@ from canvas import *
 from dom import layout_manager
 from load_and_save import save, load
 from userinterface import *
-from supportfunctions import *
+from utils import *
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
 init_layouts()
