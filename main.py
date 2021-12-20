@@ -24,7 +24,7 @@ root = xml.read_dom()
 root.id = 'root'
 state_manager.set('spritesheets', [])
 
-root.onclick('toggle-grid', lambda _: (Grid.toggle_grid if state_manager.get('toggle-grid' + 'state') else None))
+root.onclick('toggle-grid', lambda e: (Grid.toggle_grid(e) if state_manager.get('toggle-grid' + 'state') else None))
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate)
 if state_manager.get('create-project-button' + 'state') else None)
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader)
