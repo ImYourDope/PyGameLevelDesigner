@@ -2,6 +2,7 @@ from sys import exit
 from dom import layout_manager
 from XMLparser import XMLParser
 from canvas import *
+from supportfunctions import *
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
 from userinterface import *
@@ -30,6 +31,7 @@ state_manager.set('root', root)
 
 create_scrolling_cursors()
 layout_manager.push(root)
+text_buttons_update(xml.read_dom(), start_buttons_state)
 
 while True:
     # DRAW SECTION

@@ -1,6 +1,5 @@
 import pygame
 from random import randint
-
 from dom import DOMEventElement, layout_manager
 from settings import ui_main_color, popup_screen_border_color
 

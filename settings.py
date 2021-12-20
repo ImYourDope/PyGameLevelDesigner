@@ -15,7 +15,7 @@ main_font_size = 30
 main_font_name = 'DisposableDroidBB_bld.ttf'
 main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
-
+inactive_font_color = (100, 100, 100)
 
 # SPRITESHEET SETTING
 default_sprite_row_color = (255, 255, 0)
@@ -84,8 +84,6 @@ main_screen_inputlines = []
 test_popup_screen_inputlines = []
 
 # BUTTONS SETTINGS
-main_screen_buttons = []
-test_popup_screen_buttons = []
 button_gap = -2
 starting_button_pos = 5
 
@@ -93,3 +91,11 @@ starting_button_pos = 5
 popup_screen_background_color = ui_main_color
 popup_screen_border_color = ui_border_color
 popup_screen_border_thickness = 2
+
+# ENABLE SETTINGS
+main_screen_buttons_id = ['create-project-button', 'load-project-button', 'save-project-button', 'load-tiles-button',
+                          'load-spritesheet-button', 'toggle-grid', 'collision-button', 'expand-canvas-button',
+                          'layer-menu-button', 'test-run-button']
+start_buttons_state = [True, True, False, True, True, False, False, False, False, False]
+main_buttons_state = [True, True, True, True, True, True, True, True, True, True]
+collision_buttons_state = [False, False, False, False, False, False, True, False, False, False]

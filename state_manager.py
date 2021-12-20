@@ -47,3 +47,4 @@ state_manager.set('project created', False)
 state_manager.set('project name', '')
 state_manager.set('main_on', False)
 
+

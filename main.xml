@@ -10,13 +10,13 @@
                x="10"/>
     </TextButton>
 
-    <Label id="load-project-button"
+    <TextButton id="load-project-button"
                 x="10"
                 y="33"
                 text="LOAD PROJECT">
         <Hover position="relative"
                x="10"/>
-    </Label>
+    </TextButton>
 
     <TextButton id="save-project-button"
                 x="10"

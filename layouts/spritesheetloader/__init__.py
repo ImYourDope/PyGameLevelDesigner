@@ -53,7 +53,6 @@ def next_elem(_, load_tile):
         layout.set('counter', counter)
 
 
-
 layout.set('init', init)
 layout.onclick('next-tile', lambda e: next_elem(e, load_tile=True))
 layout.onclick('skip-tile', lambda e: next_elem(e, load_tile=False))
