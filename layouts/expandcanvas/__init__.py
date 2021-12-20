@@ -7,7 +7,7 @@ layout.onclick('close-popup', lambda _: layout_manager.pop())
 
 
 def expand_wrapper(_):
-    """Expands canvases based on input data."""
+    """Reads the input data and expands the canvases."""
     button_ids = ('left-expand-input', 'right-expand-input', 'top-expand-input', 'bottom-expand-input')
     sides = [None] * 4
 

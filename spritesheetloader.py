@@ -5,13 +5,16 @@ import pygame
 def load_spritesheet(spritesheet_file, sprite_row_color=default_sprite_row_color,
                      sprite_starting_color=default_sprite_starting_color,
                      sprite_ending_color=default_sprite_ending_color):
+    """Loads spritesheet and cuts it on surfaces."""
     spritesheet = pygame.image.load(spritesheet_file).convert()
     rows = []
     spritesheet_data = []
+
     for y in range(spritesheet.get_height()):
         pixel_color = spritesheet.get_at((0, y))
         if pixel_color == sprite_row_color:
             rows.append(y)
+
     for row in rows:
         row_data = []
         for x in range(spritesheet.get_width()):
@@ -36,6 +39,7 @@ def load_spritesheet(spritesheet_file, sprite_row_color=default_sprite_row_color
         spritesheet_data.append(row_data)
 
     spritesheets = []
+
     for row in spritesheet_data:
         spritesheets.extend(row)
     return spritesheets
