@@ -1,7 +1,6 @@
 from enum import Enum
 from XMLparser import *
 from interface import Grid
-from settings import *
 from tile import Tile
 from supportfunctions import *
 
@@ -43,7 +42,6 @@ def switch_canvas():
     state_manager.set('main_on', not state_manager.get('main_on'))
 
 
-
 class Canvas:
     def __init__(self, screen, width_in_tiles, height_in_tiles):
         self.screen = screen
@@ -56,7 +54,7 @@ class Canvas:
         self.canvas.fill(canvas_default_color)
 
         self.tiles = []
-        self.grid = Grid(width_in_tiles, height_in_tiles)
+        state_manager.set('grid', Grid(width_in_tiles, height_in_tiles))
 
     def relative_pos(self, pos):
         return (
@@ -85,7 +83,7 @@ class Canvas:
             self.canvas.blit(tile, tile_pos)
 
         if state_manager.get('grid on'):
-            self.grid.draw(self.canvas)
+            state_manager.get('grid').draw(self.canvas)
         self.screen.blit(self.canvas, self.pos)
 
     def get_scroll(self, pos):
@@ -148,6 +146,8 @@ class Canvas:
         bottom = bottom_in_tiles * tile_size
         self.height += top + bottom
         self.width += left + right
+        state_manager.set('grid', Grid(self.width_in_tiles + left_in_tiles + right_in_tiles,
+                                       self.height_in_tiles + top_in_tiles + bottom_in_tiles))
         canvas_new = pygame.Surface((self.width, self.height))
         canvas_new.fill(canvas_default_color)
         self.pos = [self.pos[0] - left, self.pos[1] - top]
