@@ -1,5 +1,4 @@
 import pygame.image
-
 from dom.element_interface import ElementInterface
 
 
@@ -21,10 +20,10 @@ class Image(ElementInterface):
     }
 
     def __init__(self, properties):
+        """Initializes the image"""
         self.id = properties['id']
         self.pos = properties['x'], properties['y']
         self.size = properties['width'], properties['height']
-
         self.rect = pygame.Rect(
             self.pos,
             self.size
@@ -33,8 +32,8 @@ class Image(ElementInterface):
         self.properties = properties
 
     def surface_blitting_pos(self):
+        """Calculates position for image blitting."""
         pos = [*self.pos]
-
         width = self.rect.width
         height = self.rect.height
 
@@ -51,11 +50,14 @@ class Image(ElementInterface):
         return pos
 
     def update_image(self, surface):
+        """Updates the image."""
         width = surface.get_width()
         height = surface.get_height()
         scale = min(self.properties['width'] / width, self.properties['height'] / height)
         self.surface = pygame.transform.scale(surface, (width * scale, height * scale))
 
     def draw(self, screen):
+        """Draws the image."""
+
         if 'surface' in self.__dict__:
             screen.blit(self.surface, self.surface_blitting_pos())

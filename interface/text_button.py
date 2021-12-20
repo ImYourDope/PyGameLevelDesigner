@@ -19,6 +19,7 @@ class TextButton(ElementInterface):
     }
 
     def __init__(self, properties):
+        """Initializes the text button."""
         self.id = properties['id']
         state_manager.set(self.id+'state', False)
         self.text = properties['text']
@@ -40,18 +41,22 @@ class TextButton(ElementInterface):
         self.align = properties['align']
 
     def mouse_collision(self, cors):
+        """Checks mouse collision with the text button."""
         return self.rect.collidepoint(cors) or self.hovered_rect.collidepoint(cors)
 
     def draw(self, screen):
+        """Draws the text button."""
         if not layout_manager.ishovered(self.id) or not state_manager.get(self.id+'state'):
             screen.blit(state_manager.get(self.id+'surface'), self.pos)
         else:
             screen.blit(state_manager.get(self.id+'surface'), self.hovered_pos)
 
     def set_text(self, text):
+        """Sets text button's text."""
         state_manager.set(self.id+'surface', main_font.render(text, False, main_font_color))
 
     def update(self):
+        """Updates the text button."""
         if state_manager.get(self.id+'state'):
             state_manager.set(self.id + 'surface', main_font.render(self.text, False, main_font_color))
         else:
