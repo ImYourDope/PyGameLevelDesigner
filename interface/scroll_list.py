@@ -1,8 +1,5 @@
-import pygame
-
-from settings import *
-
 from dom.element_interface import ElementInterface
+from settings import *
 
 
 def scale(surface, width, height):
@@ -33,6 +30,7 @@ class ScrollList(ElementInterface):
 
         self.text = properties['text']
         self.list = properties['list']
+        self.search_string = ''
 
         self.pos = (
             properties['x'],
@@ -74,14 +72,18 @@ class ScrollList(ElementInterface):
         self.list.append([tile, name])
 
     def update_surface(self):
-
         for i in range(len(self.list)):
             self.list[i][0] = scale(self.list[i][0], self.width, self.height)
 
+        active_list = []
+        for (tile, name) in self.list:
+            if self.search_string in name:
+                active_list.append((tile, name))
+
         self.surface.fill('white')
-        for i in range(len(self.list)):
-            tile = self.list[i][0]
-            name = self.list[i][1]
+        for i in range(len(active_list)):
+            tile = active_list[i][0]
+            name = active_list[i][1]
             self.surface.blit(tile, self.tile_pos(i))
 
             text = self.font.render(name, False, (254, 255, 255))
@@ -93,6 +95,10 @@ class ScrollList(ElementInterface):
             ))
             if self.active == i:
                 pygame.draw.rect(self.surface, 'green', self.tile_rect(i), 2)
+
+    def set_search(self, search_string):
+        self.search_string = search_string
+        self.update_surface()
 
     def draw(self, screen):
         sub_surface = self.surface.subsurface((0, self.scroll_pos), self.size)
