@@ -6,8 +6,10 @@ from supportfunctions import *
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
 from userinterface import *
+
 init_layouts()
 from layouts import *
+
 # END OF WARNING
 
 pygame.init()
@@ -22,8 +24,7 @@ root = xml.read_dom()
 root.id = 'root'
 state_manager.set('spritesheets', [])
 
-root.onclick('toggle-grid', Grid.toggle_grid
-if state_manager.get('toggle-grid' + 'state') else None)
+root.onclick('toggle-grid', lambda _: (Grid.toggle_grid if state_manager.get('toggle-grid' + 'state') else None))
 root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate)
 if state_manager.get('create-project-button' + 'state') else None)
 root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader)
