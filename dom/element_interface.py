@@ -26,11 +26,3 @@ class ElementInterface:
 
     def draw(self, screen):
         """Draws self on screen"""
-
-    def __getattribute__(self, item):
-        # print('Trying to get {0} from {1}'.format(item, self))
-        return super().__getattribute__(item)
-
-    def __setattr__(self, key, value):
-        print('Trying to set {0} = {1} in {2}'.format(key, value, self.__dict__))
-        return super().__setattr__(key, value)

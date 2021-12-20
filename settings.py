@@ -1,6 +1,6 @@
 import pygame
-
 from state_manager import state_manager
+
 # MAIN SETTINGS
 FPS = 60
 
@@ -15,14 +15,13 @@ main_font_size = 30
 main_font_name = 'DisposableDroidBB_bld.ttf'
 main_font = pygame.font.Font('DisposableDroidBB_bld.ttf', main_font_size)
 main_font_color = (255, 255, 255)
-
+inactive_font_color = (100, 100, 100)
 
 # SPRITESHEET SETTING
 default_sprite_row_color = (255, 255, 0)
 default_sprite_starting_color = (255, 0, 255)
 default_sprite_ending_color = (0, 255, 255)
 spritesheet_colorkey_color = (255, 255, 255)
-
 tile_size = 64
 
 # MAIN SCREEN SETTINGS
@@ -34,7 +33,7 @@ left_margin = 412
 right_margin = 0
 
 # UI SETTINGS
-ui_separation_line = 147
+ui_separation_line = 155
 ui_buttons_separation_line = 241
 ui_main_color = (34, 52, 77)
 ui_border_color = (54, 82, 120)
@@ -56,7 +55,7 @@ grid_color = (255, 255, 255)
 grid_colorkey = 'blue'
 
 # SCROLLING SETTINGS
-scrolling_margin = 100
+scrolling_margin = 64
 void_margin = 120
 top_scrolling_rect = pygame.Rect(left_margin + scrolling_margin, top_margin,
                                  editing_screen_width - 2 * scrolling_margin, scrolling_margin)
@@ -69,7 +68,7 @@ right_scrolling_rect = pygame.Rect(left_margin + editing_screen_width - scrollin
                                    scrolling_margin, editing_screen_height)
 
 # INPUTLINE SETTINGS
-numbers_vocabulary = '0123456789'
+numbers_vocabulary = '-0123456789'
 letters_vocabulary = 'abcdefghijklmnopqrstuvwxyz'
 capital_letters_vocabulary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 symbols_vocabulary = "_-'@#"
@@ -84,8 +83,6 @@ main_screen_inputlines = []
 test_popup_screen_inputlines = []
 
 # BUTTONS SETTINGS
-main_screen_buttons = []
-test_popup_screen_buttons = []
 button_gap = -2
 starting_button_pos = 5
 
@@ -93,3 +90,11 @@ starting_button_pos = 5
 popup_screen_background_color = ui_main_color
 popup_screen_border_color = ui_border_color
 popup_screen_border_thickness = 2
+
+# ENABLE SETTINGS
+main_screen_buttons_id = ['create-project-button', 'load-project-button', 'save-project-button', 'load-tiles-button',
+                          'load-spritesheet-button', 'toggle-grid', 'collision-button', 'expand-canvas-button',
+                          'layer-menu-button', 'test-run-button']
+start_buttons_state = [True, True, False, True, True, False, False, False, False, False]
+main_buttons_state = [True, True, True, True, True, True, True, True, True, True]
+collision_buttons_state = [False, False, False, False, False, False, True, False, False, False]

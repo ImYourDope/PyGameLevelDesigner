@@ -45,12 +45,14 @@
     <Input id="input-canvas-width"
            x="50"
            y="150"
+           vocabulary = '0123456789'
            width="200"
            height="40"/>
 
     <Input id="input-canvas-height"
            x="350"
            y="150"
+           vocabulary= '0123456789'
            width="200"
            height="40"/>
 
