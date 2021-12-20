@@ -1,10 +1,10 @@
 from sys import exit
-from dom import layout_manager
-from XMLparser import XMLParser
+
 from canvas import *
-from supportfunctions import *
+from dom import layout_manager
 # WARNING: layouts module imports dynamically. Don't change this part of code if you don't understand what it does
 from layout_loader import init_layouts
+from supportfunctions import *
 from userinterface import *
 
 init_layouts()
@@ -29,6 +29,7 @@ def add_onclick(id, fn):
     def new_fn(e):
         if state_manager.get(id + 'state'):
             fn(e)
+
     root.onclick(id, new_fn)
 
 
@@ -38,6 +39,10 @@ add_onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
 add_onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader))
 add_onclick('collision-button', lambda _: switch_canvas())
 add_onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
+
+root.oninput('tile-library-search-line', lambda _: state_manager.get('DOM tile list').elem.set_search(
+    root.get_element_by_id('tile-library-search-line').elem.text
+))
 
 state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
 state_manager.set('root', root)
