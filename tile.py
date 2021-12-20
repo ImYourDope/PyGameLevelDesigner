@@ -2,7 +2,7 @@ class Tile:
     def __init__(self, image, pos, name=''):
         self.image = image
         self.pos = pos
-        self.name = ''
+        self.name = name
 
     def mouse_collision(self, pos):
         return self.image.get_rect(topleft=self.pos).collidepoint(pos)

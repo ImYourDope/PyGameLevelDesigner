@@ -113,6 +113,11 @@ class ScrollList(ElementInterface):
             return self.list[self.active][0]
         return None
 
+    def selected_name(self):
+        if self.active is not None:
+            return self.list[self.active][1]
+        return None
+
     def onclick(self, event):
         pos = [*event.pos]
         pos[0] -= self.pos[0]

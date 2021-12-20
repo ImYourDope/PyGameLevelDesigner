@@ -171,10 +171,12 @@ class Canvas:
     def onclick(self, event):
         del_tile = None
         tile, tile_pos = self.process_tile()
+        name = state_manager.get('DOM tile list').elem.selected_name()
+
         if event.button == 1:
             print('no')
             if tile is not None:
-                self.tiles.append(Tile(tile, tile_pos))
+                self.tiles.append(Tile(tile, tile_pos, name))
         elif event.button == 3:
             print('yes')
             relative_pos = self.relative_pos(pygame.mouse.get_pos())
