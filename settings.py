@@ -22,7 +22,6 @@ default_sprite_row_color = (255, 255, 0)
 default_sprite_starting_color = (255, 0, 255)
 default_sprite_ending_color = (0, 255, 255)
 spritesheet_colorkey_color = (255, 255, 255)
-
 tile_size = 64
 
 # MAIN SCREEN SETTINGS
@@ -34,7 +33,7 @@ left_margin = 412
 right_margin = 0
 
 # UI SETTINGS
-ui_separation_line = 147
+ui_separation_line = 155
 ui_buttons_separation_line = 241
 ui_main_color = (34, 52, 77)
 ui_border_color = (54, 82, 120)

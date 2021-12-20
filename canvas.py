@@ -1,8 +1,9 @@
 from enum import Enum
-
+from XMLparser import *
 from interface import Grid
 from settings import *
 from tile import Tile
+from supportfunctions import *
 
 right_arrow_cursor = None
 left_arrow_cursor = None
@@ -29,11 +30,18 @@ def create_scrolling_cursors():
 
 
 def switch_canvas():
+    xml = XMLParser('main.xml')
+    layout = xml.read_dom()
     a = state_manager.get('active_canvas')
     state_manager.get('inactive_canvas').pos = state_manager.get('active_canvas').pos
     state_manager.set('active_canvas', state_manager.get('inactive_canvas'))
     state_manager.set('inactive_canvas', a)
+    if state_manager.get('main_on'):
+        text_buttons_update(layout, collision_buttons_state)
+    else:
+        text_buttons_update(layout, main_buttons_state)
     state_manager.set('main_on', not state_manager.get('main_on'))
+
 
 
 class Canvas:
