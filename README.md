@@ -9,5 +9,10 @@ Made by Artyom Shindin and Shlyakhtun Prokhor as a semester programming project 
  - Smart drawing and deleting
  - Grid drawing 
 
-Libraries used: PyGame, tkinter.
-System requirements: 100 MB RAM, 1 GHz processor.
+## Libraries used:
+ - PyGame
+ - Tkinter.
+
+## System requirements: 
+ - 100 MB RAM
+ - 2 GHz processor.
