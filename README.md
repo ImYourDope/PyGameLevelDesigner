@@ -8,6 +8,6 @@ Made by Artyom Shindin and Shlyakhtun Prokhor as a semester programming project 
  - Special layer for collisions
  - Smart drawing and deleting
  - Grid drawing 
- The following functions are currently under development:
+The following functions are currently under development:
  - Layer menu
  - Test run
