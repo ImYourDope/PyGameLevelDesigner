@@ -24,17 +24,21 @@ root = xml.read_dom()
 root.id = 'root'
 state_manager.set('spritesheets', [])
 
-root.onclick('toggle-grid', lambda e: (Grid.toggle_grid(e) if state_manager.get('toggle-grid' + 'state') else None))
-root.onclick('create-project-button', lambda _: layout_manager.push(projectcreate)
-if state_manager.get('create-project-button' + 'state') else None)
-root.onclick('load-tiles-button', lambda _: layout_manager.push(tileloader)
-if state_manager.get('load-tiles-button' + 'state') else None)
-root.onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader)
-if state_manager.get('load-spritesheet-button' + 'state') else None)
-root.onclick('collision-button', lambda _: switch_canvas()
-if state_manager.get('collision-button' + 'state') else None)
-root.onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas)
-if state_manager.get('expand-canvas-button' + 'state') else None)
+
+def add_onclick(id, fn):
+    def new_fn(e):
+        if state_manager.get(id + 'state'):
+            fn(e)
+    root.onclick(id, new_fn)
+
+
+add_onclick('toggle-grid', Grid.toggle_grid)
+add_onclick('create-project-button', lambda _: layout_manager.push(projectcreate))
+add_onclick('load-tiles-button', lambda _: layout_manager.push(tileloader))
+add_onclick('load-spritesheet-button', lambda _: layout_manager.push(spritesheetloader))
+add_onclick('collision-button', lambda _: switch_canvas())
+add_onclick('expand-canvas-button', lambda _: layout_manager.push(expandcanvas))
+
 state_manager.set('DOM tile list', root.get_element_by_id('tiles'))
 state_manager.set('root', root)
 
